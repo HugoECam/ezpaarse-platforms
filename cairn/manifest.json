@@ -10,7 +10,8 @@
   "contact": "thomas.porquet at couperin.org",
   "pkb": true,
 	"domains": [
-    "www.cairn.info"
+    "www.cairn.info",
+    "www.cairn-int.info"
 	],
   "bacon": {
     "provider": "CAIRN"

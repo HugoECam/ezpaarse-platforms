@@ -5,6 +5,7 @@ const Parser = require('../.lib/parser.js');
 
 module.exports = new Parser(function analyseEC(parsedUrl) {
   let result = {};
+  let path = parsedUrl.pathname;
   let param  = parsedUrl.query || {};
   let match;
 
@@ -69,7 +70,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
                    split[2] + '_' +
                    split[3];
     }
-  } else if ((match = /^\/(revue-|magazine-)([a-z0-9@-]+)(-[0-9]{4}-[0-9]+([^.]*))\.htm$/.exec(parsedUrl.pathname)) !== null) {
+  } else if ((match = /^\/(revue-|magazine-|article-)([A-Za-z0-9@-]+)(-[0-9]{4}-[0-9]+([^.]*))\.htm$/.exec(parsedUrl.pathname)) !== null) {
     // journal example: http://www.cairn.info/revue-actes-de-la-recherche-en-sciences-sociales-2012-5-page-4.htm
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
@@ -85,7 +86,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
       result.rtype    = 'PREVIEW';
       result.mime     = 'MISC';
     }
-  } else if ((match = /^\/(revue-|magazine-)([a-z0-9@-]+)\.htm$/.exec(parsedUrl.pathname)) !== null) {
+  } else if ((match = /^\/(revue-|magazine-|article-)([a-z0-9@-]+)\.htm$/.exec(parsedUrl.pathname)) !== null) {
     // journal example: http://www.cairn.info/revue-a-contrario.htm
     result.unitid   = match[1] + match[2];
     result.title_id = match[1] + match[2];
@@ -110,6 +111,46 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
       result.rtype = 'PREVIEW';
       result.mime  = 'MISC';
     }
+  } else if ((match = /^\/(revue-|magazine-|article-)(([A-Za-z0-9-_]+)--([a-z-]+)).htm$/i.exec(path)) !== null) {
+    // https://www.cairn-int.info:443/article-E_AMX_057_0186--the-economics-and-politics-of-thomas.htm
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.unitid   = match[2];
+    result.title_id = match[4];
+  } else if ((match = /^\/journal-(.*).htm$/i.exec(path)) !== null) {
+    // https://www.cairn-int.info:443/journal-cites.htm
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.publication_title = match[1].charAt(0).toUpperCase() + match[1].slice(1);
+    result.publication_title = result.publication_title.replace(/-/g, ' ');
+  } else if ((match = /^\/abstract-(([a-zA-Z0-9-_]+)--([a-z-]+)).htm$/i.exec(path)) !== null) {
+    // https://www.cairn-int.info:443/abstract-E_APHI_673_0399--coherence-between-the-first-two.htm
+    result.rtype    = 'ABS';
+    result.mime     = 'HTML';
+    result.unitid   = match[2];
+    result.titleid  = match[3];
+  } else if ((match = /^\/article.php$/i.exec(path)) !== null) {
+    // https://www.cairn.info:443/article.php?ID_ARTICLE=APHI_673_0399
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.unitid   = param.ID_ARTICLE;
+    result.title_id = param.ID_ARTICLE;
+  } else if (/^$/i.test(path)) {
+    // https://www.cairn.info:443/ouvrages.php
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+  } else if (/^\/about_this_journal.php$/i.test(path)) {
+    // https://www.cairn-int.info:443/about_this_journal.php?ID_REVUE=E_AMX
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+  } else if (/^\/list_articles_fulltext.php$/i.test(path)) {
+    // https://www.cairn-int.info:443/list_articles_fulltext.php?ID_REVUE=E_MULT
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+  } else if (/^\/resultats_recherche.php$/i.test(path)) {
+    // https://www.cairn-int.info:443/resultats_recherche.php?send_search_field=Search&searchTerm=plato&type_search=all
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
   }
 
   return result;
