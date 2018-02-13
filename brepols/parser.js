@@ -56,7 +56,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
       result.mime     = 'MISC';
     }
   } else if (/^\/action\/doSearch$/i.test(path)) {
-    // http://www.brepolsonline.net:80/action/doSearch?AllField=hitler
+    // http://www.brepolsonline.net:80/action/doSearch?AllField=pascal
     result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
   } else if (/^\/author\/.*$/i.test(path)) {
@@ -77,17 +77,18 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid   = match[3];
   } else if ((match = /^\/doi\/book\/(([0-9.]*)\/(.*))$/i.exec(path)) !== null) {
     // http://www.brepolsonline.net:80/doi/book/10.1484/M.AS-EB.5.107423
-    result.rtype    = 'TOC';
+    result.rtype    = 'BOOK';
     result.mime     = 'HTML';
     result.doi      = match[1];
     result.unitid   = match[3];
-  } else if ((match = /^$/i.exec(path)) !== null) {
+  } else if ((match = /^\/doi\/pdf\/(([0-9.]*)\/(.*))$/i.exec(path)) !== null) {
     // http://www.brepolsonline.net:80/doi/pdf/10.1484/J.ASH.1.102904
+    result.rtype    = 'BOOK';
     result.mime     = 'PDF';
     result.doi      = match[1];
     result.unitid   = match[3];
   } else if ((match = /^\/loi\/([a-z]*)$/i.exec(path)) !== null) {
-    //http://www.brepolsonline.net/loi/almagest
+    // http://www.brepolsonline.net/loi/almagest
     result.rtype    = 'ABS';
     result.mime     = 'HTML';
     title           = match[1];
