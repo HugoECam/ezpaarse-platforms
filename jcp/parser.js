@@ -2,8 +2,8 @@
 
 'use strict';
 const Parser = require('../.lib/parser.js');
-const jcp_doi_prefix = '10.4088/JCP.'
-const pcc_doi_prefix = '10.4088/PCC.'
+const jcp_doi_prefix = '10.4088/JCP.';
+const pcc_doi_prefix = '10.4088/PCC.';
 
 /**
  * Recognizes the accesses to the platform Journal of Clinical Psychiatry
