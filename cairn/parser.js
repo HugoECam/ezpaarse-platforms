@@ -135,7 +135,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.mime     = 'HTML';
     result.unitid   = param.ID_ARTICLE;
     result.title_id = param.ID_ARTICLE;
-  } else if (/^$/i.test(path)) {
+  } else if (/^\/ouvrages.php$/i.test(path)) {
     // https://www.cairn.info:443/ouvrages.php
     result.rtype    = 'REF';
     result.mime     = 'HTML';
@@ -150,6 +150,30 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
   } else if (/^\/resultats_recherche.php$/i.test(path)) {
     // https://www.cairn-int.info:443/resultats_recherche.php?send_search_field=Search&searchTerm=plato&type_search=all
     result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
+  } else if (/^\/abstract.php$/i.test(path)) {
+    // https://www.cairn-int.info:443/abstract.php?ID_ARTICLE=E_VING_092_0067&DocId=24836
+    result.rtype    = 'ABS';
+    result.mime     = 'HTML';
+    result.unitid   = param.ID_ARTICLE;
+    result.title_id = param.DocId;
+  } else if (/^\/article_p.php$/i.test(path)) {
+    // https://www.cairn-int.info:443/article_p.php?ID_ARTICLE=E_NAPO_113_0084
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.unitid   = param.ID_ARTICLE;
+    result.title_id = param.ID_ARTICLE;
+  } else if (/^\/publications-of-.*.htm$/i.test(path)) {
+    // https://www.cairn-int.info:443/publications-of-Roux-%20Annie--7797.htm
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+  } else if (/^\/listrev.php$/i.test(path)) {
+    // https://www.cairn-int.info:443/listrev.php
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+  } else if (/^\/disc-.*.htm$/i.test(path)) {
+    // https://www.cairn-int.info:443/disc-education.htm
+    result.rtype    = 'TOC';
     result.mime     = 'HTML';
   }
 
