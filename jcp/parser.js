@@ -35,15 +35,15 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     } else if (match[1] === 'PCC' || match[1] === 'pcc') {
       result.doi = pcc_doi_prefix + itemid[1];
     }
-  } else if ((match = /^\/([a-zA-Z]{3})\/article\/Pages\/\d\d\d\d\/[a-z0-9]*\/(.*)\.aspx$/i.exec(path)) !== null) {
+  } else if ((match = /^\/([a-zA-Z]{3})\/article\/(Pages|pages)\/\d\d\d\d\/[a-z0-9]*\/(.*)\.aspx$/i.exec(path)) !== null) {
     // http://www.psychiatrist.com:80/JCP/article/Pages/2018/v79n02/17m11587.aspx
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
-    result.unitid   = match[2];
+    result.unitid   = match[3];
     if (match[1] === 'jcp' || match[1] === 'JCP') {
-      result.doi = jcp_doi_prefix + match[2];
+      result.doi = jcp_doi_prefix + match[3];
     } else if (match[1] === 'pcc' || match[1] === 'PCC') {
-      result.doi = pcc_doi_prefix + match[2];
+      result.doi = pcc_doi_prefix + match[3];
     }
   } else if ((match = /^\/([a-zA-Z]{3})\/article\/binaryfiles\/audio\/player.aspx$/i.exec(path)) !== null) {
     // http://www.psychiatrist.com:80/jcp/article/binaryfiles/audio/player.aspx?grant=hi&url=/pcc/article/BinaryFiles/audio/podcast/40PCC196PC.mp3&title=The%20Primary%20Care%20Companion&author=Various%20Authors&duration=
@@ -66,7 +66,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     } else if (match[1] === 'pcc' || match[1] === 'PCC') {
       result.publication_title = 'The Primary Care Companion For CNS Disorders';
     }
-  } else if ((match = /^\/([a-zA-Z]{3})\/(toc|TOC)\/pages\/.*.aspx$/i.exec(path)) !== null) {
+  } else if ((match = /^\/([a-zA-Z]{3})\/toc|TOC\/pages\/.*.aspx$/i.exec(path)) !== null) {
     // http://www.psychiatrist.com:80/jcp/toc/pages/aheadofprint.aspx
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
@@ -75,7 +75,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     } else if (match[1] === 'pcc' || match[1] === 'PCC') {
       result.publication_title = 'The Primary Care Companion For CNS Disorders';
     }
-  } else if ((match = /^\/([a-zA-Z]{3})\/(Pages|pages)\/weekly.aspx$/i.exec(path)) !== null) {
+  } else if ((match = /^\/([a-zA-Z]{3})\/Pages|pages\/weekly.aspx$/i.exec(path)) !== null) {
     // http://www-psychiatrist-com.proxy.library.emory.edu/JCP/Pages/weekly.aspx
     result.rtype    = 'VIDEO';
     result.mime     = 'MISC';
@@ -86,6 +86,10 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     }
   } else if (/^\/(Pages|pages)\/Search/i.test(path)) {
     // http://www.psychiatrist.com:80/Pages/SearchResults.aspx?k=%22freud%22
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
+  } else if (/^\/[a-z]{3}\/Pages|pages\/categories.aspx$/i.test(path)) {
+    // http://www.psychiatrist.com:80/pcc/pages/categories.aspx?cat=Sleep
     result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
   }
