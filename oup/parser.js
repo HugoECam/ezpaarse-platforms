@@ -106,7 +106,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     if (/\.pdf$/i.test(path)) {
       result.mime = 'PDF';
     } else if (param.print === 'pdf') {
-      result.mime = 'PDF'; 
+      result.mime = 'PDF';
     } else {
       result.mime     = 'HTML';
     }
@@ -148,7 +148,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     // 10.1093/OBO/9780195393361
     result.rtype    = 'REF';
     result.mime     = 'HTML';
-    result.doi      = doi_prefix + match[1].replace("-", "/");
+    result.doi      = doi_prefix + match[1].replace('-', '/');
     result.unitid   = match[2];
   } else if ((match = /^\/[a-z]{3}\/page\/(.*)$/i.exec(path)) !== null) {
     // http://www.oxfordbibliographies.com:80/obo/page/biblical-studies
