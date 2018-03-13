@@ -16,7 +16,9 @@
     "www.oxfordmusiconline.com",
     "www.oxfordreference.com",
     "www.oxfordbiblicalstudies.com",
-    "www.oxfordwesternmusic.com"
+    "www.oxfordwesternmusic.com",
+    "public.oed.com",
+    "www.oed.com"
 	],
   "bacon": {
     "provider": "OUP"

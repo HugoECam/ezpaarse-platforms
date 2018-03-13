@@ -1,7 +1,35 @@
-out-doi;out-publication_date;out-unitid;out-title_id;out-mime;out-rtype;in-url
-;;current;petrology;MISC;TOC;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/current
-10.1093/petrology/egt077;2014;10.1093/petrology/egt077;petrology;HTML;ABS;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/early/2014/01/11/petrology.egt077.short?rss=1
-10.1093/petrology/egt077;2014;10.1093/petrology/egt077;petrology;HTML;ARTICLE;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/early/2014/01/11/petrology.egt077.full
-10.1093/petrology/egt077;2014;10.1093/petrology/egt077;petrology;PDF;ARTICLE;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/early/2014/01/11/petrology.egt077.full.pdf+html
-;;DC1;petrology;MISC;SUPPL;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/55/2/241/suppl/DC1
-;;113/3/403.figures-only;aob;MISC;FIGURES;http://aob.oxfordjournals.org.gate1.inist.fr/content/113/3/403.figures-only
+out-publication_title;out-print_identifier;out-doi;out-publication_date;out-unitid;out-title_id;out-mime;out-rtype;in-url
+;;;;current;petrology;MISC;TOC;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/current
+;;10.1093/petrology/egt077;2014;10.1093/petrology/egt077;petrology;HTML;ABS;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/early/2014/01/11/petrology.egt077.short?rss=1
+;;10.1093/petrology/egt077;2014;10.1093/petrology/egt077;petrology;HTML;ARTICLE;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/early/2014/01/11/petrology.egt077.full
+;;10.1093/petrology/egt077;2014;10.1093/petrology/egt077;petrology;PDF;ARTICLE;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/early/2014/01/11/petrology.egt077.full.pdf+html
+;;;;DC1;petrology;MISC;SUPPL;http://petrology.oxfordjournals.org.biblioplanets.gate.inist.fr/content/55/2/241/suppl/DC1
+;;;;113/3/403.figures-only;aob;MISC;FIGURES;http://aob.oxfordjournals.org.gate1.inist.fr/content/113/3/403.figures-only
+Oxford English Dictionary;;;;;;HTML;SEARCH;http://www.oed.com:80/browsedictionary?scope=SENSE&subjectClass=Agriculture+and+Horticulture
+Oxford English Dictionary;;;;/soundfiles/a/at/ato/atol?pub_sig=YkUp2HE0gNwRjj4B3ePRa5wVpU2KtOoHH+4l/jVAn/I=;;MISC;AUDIO;http://www.oed.com:80/audio?file=%2Fsoundfiles%2Fa%2Fat%2Fato%2Fatol%3Fpub_sig%3DYkUp2HE0gNwRjj4B3ePRa5wVpU2KtOoHH%252B4l%252FjVAn%252FI%253D%231_us_1_abbr.mp32018-03-05.mp3
+Oxford English Dictionary;;;;135565;;HTML;ARTICLE;http://www.oed.com:80/view/source/135565
+Oxford English Dictionary;;;;135565;;HTML;ARTICLE;http://www.oed.com:80/view/Entry/135565
+Oxford English Dictionary;;;;;;HTML;REF;http://public.oed.com:80/history-of-the-oed/
+Oxford English Dictionary;;;;how-to-use-the-historical-thesaurus-of-the-oed;;HTML;REF;http://public.oed.com:80/historical-thesaurus-of-the-oed/how-to-use-the-historical-thesaurus-of-the-oed/
+Oxford English Dictionary;;;;;;HTML;TOC;http://public.oed.com:80/historical-thesaurus-of-the-oed/
+Oxford English Dictionary;;;;english-in-use/south-african-english/;;HTML;REF;http://public.oed.com:80/aspects-of-english/english-in-use/south-african-english/
+Oxford English Dictionary;;;;;;HTML;TOC;http://public.oed.com:80/aspects-of-english/
+Oxford English Dictionary;;;;;;HTML;REF;http://public.oed.com:80/appeals-tags/food-drink/
+Oxford English Dictionary;;;;;;HTML;REF;http://public.oed.com:80/appeals-news/
+Oxford English Dictionary;;;;arnold-palmer;;HTML;REF;http://public.oed.com:80/appeals/arnold-palmer/
+Oxford English Dictionary;;;;;;HTML;TOC;http://public.oed.com:80/appeals
+Oxford History of Western Music;9780195384857;;;actrade-9780195384857-div1-007002;;HTML;ARTICLE;http://www.oxfordwesternmusic.com:80/view/Volume5/actrade-9780195384857-div1-007002.xml?rskey=R8nvhr&result=1
+Oxford Biblical Studies Online;;;;;;HTML;REF;http://www.oxfordbiblicalstudies.com:80/Timeline.html?_hi=22&_start=31
+Oxford Biblical Studies Online;;;;;;HTML;SEARCH;http://www.oxfordbiblicalstudies.com:80/AdvancedSearch.html
+Oxford Biblical Studies Online;;;;;;HTML;SEARCH;http://www.oxfordbiblicalstudies.com:80/concordancebrowse?work=/opr/t259/
+Oxford Biblical Studies Online;;;;KJV/bibref/Tanakh/Isa/40;;HTML;REF;http://www.oxfordbiblicalstudies.com:80/article/sidebyside/bibref/KJV/bibref/Tanakh/Isa/40?verse=
+Oxford Biblical Studies Online;9780192835253;;;;;HTML;BOOK_SECTION;http://www.oxfordbiblicalstudies.com:80/article/book/obso-9780192835253/obso-9780192835253-div1-729
+Oxford Biblical Studies Online;9780191001581;;;obso-9780191001581-figureGroup-33;;MISC;IMAGE;http://www.oxfordbiblicalstudies.com:80/article/book/obso-9780191001581/obso-9780191001581-div1-22/images/obso-9780191001581-figureGroup-33?_hi=20&_pos=1
+Oxford Music Online;;;;2008-letter-from-the-editor;;HTML;REF;http://www.oxfordmusiconline.com:80/page/2008-letter-from-the-editor
+Oxford Bibliographies;;;;;;HTML;REF;http://www.oxfordbibliographies.com:80/newsitem/176/December$00202017$002fJanuary$00202018$0020Update$0020Live
+Oxford Bibliographies;;;;biblical-studies;;HTML;REF;http://www.oxfordbibliographies.com:80/obo/page/biblical-studies
+;;10.1093/obo/9780195393361;;obo-9780195393361-0110;;HTML;REF;http://www.oxfordbibliographies.com:80/view/document/obo-9780195393361/obo-9780195393361-0110.xml
+Oxford Clinical Psychology;;;;OXPSYCH_SERIES:best_practices_in_forensic_mental_health_assessments;;PDF;REF;http://www.oxfordclinicalpsych.com:80/oso/search.downloaddocsetaspdf:download/OXPSYCH_SERIES:best_practices_in_forensic_mental_health_assessments?t0=OXPSYCH_SERIES%3Abest_practices_in_forensic_mental_health_assessments
+;;10.1093/gmo/9781561592630.001.0001;;omo-9781561592630-e-0000000094;;HTML;BOOK;http://www.oxfordmusiconline.com:80/grovemusic/view/10.1093/gmo/9781561592630.001.0001/omo-9781561592630-e-0000000094
+Oxford Clinical Psychology;;;;;;HTML;SEARCH;http://www.oxfordclinicalpsych.com:80/browse?t0=OXPSYCH_SPECIALTY:SCI02210
+Oxford Clinical Psychology;;;;;;MISC;REF;http://www.oxfordclinicalpsych.com:80/fileasset/OxfordPsychologyOnlineLIVETitleList_Jan_2018.xlsx
