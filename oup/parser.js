@@ -717,6 +717,30 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     } else if (/oed.com/i.test(hostname)) {
       result.publication_title = 'Oxford English Dictionary';
     }
+  } else if ((match = /^\/resource\/(.*).xhtml$/i.exec(path)) !== null) {
+    // http://www.oxfordbiblicalstudies.com/resource/WeightsAndMeasures.xhtml
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    if (match[1] === 'ToolsAndResources') {
+      result.rtype  = 'TOC';
+    } else {
+      result.rtype = 'REF';
+    }
+    if (/oxfordclinicalpsych.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Clinical Psychology';
+    } else if (/oxfordmusiconline.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Music Online';
+    } else if (/oxfordbibliographies.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Bibliographies';
+    } else if (/oxfordreference.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Reference';
+    } else if (/oxfordbiblicalstudies.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Biblical Studies Online';
+    } else if (/oxfordwesternmusic.com/i.test(hostname)) {
+      result.publication_title = 'Oxford History of Western Music';
+    } else if (/oed.com/i.test(hostname)) {
+      result.publication_title = 'Oxford English Dictionary';
+    }
   }
 
   return result;
