@@ -245,6 +245,26 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     } else if (/oed.com/i.test(hostname)) {
       result.publication_title = 'Oxford English Dictionary';
     }
+  } else if ((match = /^\/article\/book\/[a-z]*?-([0-9]*)$/i.exec(path)) !== null) {
+    // http://www.oxfordbiblicalstudies.com:80/article/book/obso-9780195288803?_hi=2&_pos=1
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.print_identifier = match[1];
+    if (/oxfordclinicalpsych.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Clinical Psychology';
+    } else if (/oxfordmusiconline.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Music Online';
+    } else if (/oxfordbibliographies.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Bibliographies';
+    } else if (/oxfordreference.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Reference';
+    } else if (/oxfordbiblicalstudies.com/i.test(hostname)) {
+      result.publication_title = 'Oxford Biblical Studies Online';
+    } else if (/oxfordwesternmusic.com/i.test(hostname)) {
+      result.publication_title = 'Oxford History of Western Music';
+    } else if (/oed.com/i.test(hostname)) {
+      result.publication_title = 'Oxford English Dictionary';
+    }
   } else if ((match = /\/images\/((.*?)-(.*?)-(.*))$/i.exec(path)) !== null) {
     // http://www.oxfordbiblicalstudies.com:80/article/book/obso-9780191001581/obso-9780191001581-div1-22/images/obso-9780191001581-figureGroup-33?_hi=20&_pos=1
     result.rtype    = 'IMAGE';
@@ -741,6 +761,18 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     } else if (/oed.com/i.test(hostname)) {
       result.publication_title = 'Oxford English Dictionary';
     }
+  } else if (/annualreport.oup.com/i.test(hostname)) {
+    // https://annualreport.oup.com:443/2016/report-of-the-secretary-to-the-delegates/
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = path;
+    result.unitid   = path;
+    result.publication_title = 'Annual Report';
+  } else if ((match = /^\/[a-z]*\/currentfocus/i.exec(path)) !== null) {
+    // http://www.oup.com:80/obso/currentfocus/
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
   }
 
   return result;
