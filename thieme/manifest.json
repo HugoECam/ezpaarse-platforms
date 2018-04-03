@@ -3,7 +3,8 @@
   "status": "beta",
   "domains": [
     "www.thieme-connect.com",
-    "www.thieme-connect.de"
+    "www.thieme-connect.de",
+    "medone-education.thieme.com"
   ],
   "recognize": {
     "rid": [
