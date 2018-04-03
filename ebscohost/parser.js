@@ -126,6 +126,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   } if (result.doi == null) {
     // http://search.ebscohost.com:80/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=apn
     result.rtype    = 'REF';
+    result.mime     = 'HTML';
     if (param.defaultdb === 'apn') {
       result.publication_title = 'Alternative Press Index';
     } else if (param.defaultdb === 'a9h') {
