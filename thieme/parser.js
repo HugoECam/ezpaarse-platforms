@@ -40,7 +40,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://medone-education.thieme.com:443/cp/search;;searchterm=gunshot
     result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
-  } else if ((match = /^\/ebook\/(.*)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/ebooks\/(.*)$/i.exec(path)) !== null) {
     // https://medone-education.thieme.com:443/ebooks/1210827
     result.rtype    = 'BOOK';
     result.mime     = 'HTML';
