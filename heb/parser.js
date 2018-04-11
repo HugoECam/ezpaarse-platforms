@@ -35,6 +35,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://quod.lib.umich.edu:443/cgi/t/text/text-idx?c=acls&cc=acls&op2=and&rgn2=series&sort=freq&type=simple&q1=paper&rgn1=full+text&q2=ACLS+Humanities+E-Book&cite1=&cite1restrict=author&cite2=&cite2restrict=author&Submit=Search
     // https://quod.lib.umich.edu:443/cgi/t/text/text-idx?c=acls;cc=acls;idno=heb03408.0001.001;node=heb03408.0001.001%3A4.1;view=toc
     // https://quod.lib.umich.edu:443/cgi/t/text/text-idx?c=acls;cc=acls;rgn=div2;view=text;idno=heb99046.0001.001;node=heb99046.0001.001%3A9.10
+    // https://quod.lib.umich.edu:443/cgi/t/text/text-idx?c=acls;idno=heb04957
     if (param.Submit === 'Search') {
       result.rtype    = 'SEARCH';
       result.mime     = 'HTML';
@@ -45,6 +46,16 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
       result.unitid = match[1];
     } else if ((match = /view=text;idno=(.*?);/i.exec(parsedUrl.path)) !== null) {
       result.rtype  = 'SUPPL';
+      result.mime   = 'HTML';
+      result.title_id = match[1];
+      result.unitid = match[1];
+    } else if ((match = /c=.*;idno=(.*)$/i.exec(parsedUrl.path)) !== null) {
+      result.rtype  = 'TOC';
+      result.mime   = 'HTML';
+      result.title_id = match[1];
+      result.unitid = match[1];
+    } else if ((match = /view=toc;idno=(.*?);/i.exec(parsedUrl.path)) !== null) {
+      result.rtype  = 'TOC';
       result.mime   = 'HTML';
       result.title_id = match[1];
       result.unitid = match[1];
