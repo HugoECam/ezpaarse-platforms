@@ -123,6 +123,69 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     if (result.unitid && result.unitid.toLowerCase().startsWith('doi:')) {
       result.doi = result.unitid = result.unitid.substr(4);
     }
+  } if (result.doi == null) {
+    // http://search.ebscohost.com:80/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=apn
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+    if (param.defaultdb === 'apn') {
+      result.publication_title = 'Alternative Press Index';
+    } else if (param.defaultdb === 'a9h') {
+      result.publication_title = 'Academic Search Complete';
+    } else if (param.defaultdb === '31h') {
+      result.publication_title = 'America: History & Life with Full Text ';
+    } else if (param.defaultdb === 'ant') {
+      result.publication_title = 'Anthropology Plus';
+    } else if (param.defaultdb === 'aft') {
+      result.publication_title = 'Art Full Text (H.W. Wilson)';
+    } else if (param.defaultdb === 'bah') {
+      result.publication_title = 'Business Source Alumni Edition';
+    } else if (param.defaultdb === 'cin20') {
+      result.publication_title = 'CINAHL';
+    } else if (param.defaultdb === 'dmp') {
+      result.publication_title = 'DynamedPlus';
+    } else if (param.defaultdb === 'nlebk') {
+      result.publication_title = 'eBook Collection';
+    } else if (param.defaultdb === 'eoh') {
+      result.publication_title = 'Econlit with Full Text';
+    } else if (param.defaultdb === 'eft') {
+      result.publication_title = 'Education Full Text (H.W. Wilson) ';
+    } else if (param.defaultdb === 'eric') {
+      result.publication_title = 'ERIC';
+    } else if (param.defaultdb === 'hia') {
+      result.publication_title = 'Historical Abstratcs';
+    } else if (param.defaultdb === 'hsr') {
+      result.publication_title = 'Humanities & Social Sciences Index Retrospective: 1907-1984 (H.W. Wilson)';
+    } else if (param.defaultdb === 'qth') {
+      result.publication_title = 'LGBT Life w/Full Text';
+    } else if (param.defaultdb === 'lii') {
+      result.publication_title = 'Library Literature & Information Science Index (H.W. Wilson)';
+    } else if (param.defaultdb === 'lih') {
+      result.publication_title = 'LISTA with Full Text';
+    } else if (param.defaultdb === 'cmedm') {
+      result.publication_title = 'MEDLINE';
+    } else if (param.defaultdb === 'loh') {
+      result.publication_title = 'Mental Measurements Yearbook';
+    } else if (param.defaultdb === 'mzh') {
+      result.publication_title = 'MLA International Bibliography';
+    } else if (param.defaultdb === 'pif') {
+      result.publication_title = 'The Philosopher\'s Index with Full Text';
+    } else if (param.defaultdb === 'pdh') {
+      result.publication_title = 'PsycARTICLES';
+    } else if (param.defaultdb === 'psyh') {
+      result.publication_title = 'PsycINFO';
+    } else if (param.defaultdb === 'pst') {
+      result.publication_title = 'PsycTESTS';
+    } else if (param.defaultdb === 'rgr') {
+      result.publication_title = 'Readers\' Guide Retrospective: 1890-1982 (H.W. Wilson)';
+    } else if (param.defaultdb === 'rft') {
+      result.publication_title = 'RILM Abstracts of Music Literature with Full Text';
+    } else if (param.defaultdb === 'ssf') {
+      result.publication_title = 'Social Sciences Full Text (H.W. Wilson)';
+    } else if (param.defaultdb === 'sih') {
+      result.publication_title = 'SocINDEX with Full Text';
+    } else if (param.defaultdb === 'fyh') {
+      result.publication_title = 'Women\'s Studies International';
+    }
   }
 
   return result;

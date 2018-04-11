@@ -39,9 +39,11 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.rtype    = 'ARTICLE';
     result.mime     = 'PDF';
     result.title_id = match[4];
-
+  } else if (/^search/i.test(path)) {
+    // https://medone-education.thieme.com:443/cp/search;content_type=ebook;searchterm=gunshot
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
   }
 
   return result;
 });
-
