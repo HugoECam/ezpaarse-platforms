@@ -50,7 +50,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
       result.rtype  = 'ARTICLE';
     } else if (match[2] === 'supplemental') {
       result.rtype  = 'SUPPL';
-    } else if (match[2] === 'reference') {
+    } else if (match[2] === 'references') {
       result.rtype  = 'REF';
     } else if (match[2] === 'ppt') {
       result.rtype  = 'IMAGE';
