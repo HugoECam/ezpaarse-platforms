@@ -56,8 +56,8 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'HTML';
     result.title_id = match[2];
     result.unitid   = match[1];
+
   }
 
   return result;
 });
-
