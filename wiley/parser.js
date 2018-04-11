@@ -213,6 +213,18 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.unitid = match[2];
     result.rtype  = 'ARTICLE';
     result.mime   = match[3] === 'pdf' ? 'PDF' : 'HTML';
+  } else if ((match = /^\/doi\/full\/((10\.[0-9]+)\/([a-z0-9.]+))$/i.exec(path)) !== null) {
+    // https://anthrosource-onlinelibrary-wiley-com.proxy.library.emory.edu/doi/full/10.1111/cuag.12105
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.doi      = match[1];
+    result.unitid   = match[3];
+  } else if ((match = /^\/doi\/epdf\/((10\.[0-9]+)\/([a-z0-9.]+))$/i.exec(path)) !== null) {
+    // https://anthrosource.onlinelibrary.wiley.com:443/doi/epdf/10.1111/cuag.12105
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'PDF';
+    result.doi      = match[1];
+    result.unitid   = match[3];
   }
 
   return result;
