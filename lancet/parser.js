@@ -90,6 +90,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'MISC';
     result.doi      = doi_prefix + '/' + match[1];
     result.pii      = match[1];
+    result.title_id = match[1];
     result.unitid   = match[1];
   }
 
