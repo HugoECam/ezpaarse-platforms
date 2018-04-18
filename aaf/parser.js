@@ -86,6 +86,14 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'MISC';
     result.title_id = match[1];
     result.unitid   = match[1];
+  } else if (/^\/arts/i.test(path)) {
+    // http://allafrica.com:80/arts/
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+  } else if (/^\/aid/i.test(path)) {
+    // http://allafrica.com:80/aid/
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
   }
 
   return result;
