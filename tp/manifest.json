@@ -1,0 +1,16 @@
+{
+  "version": "2018-05-11",
+  "status": "beta",
+  "domains": [
+    "www.transplantation-proceedings.org"
+  ],
+  "recognize": {
+    "rid": []
+  },
+  "name": "tp",
+  "longname": "Transplantation Proceedings",
+  "describe": "Recognizes the accesses to the platform Transplantation Proceedings",
+  "docurl": "http://ang.couperin.org/platforms/to_be_completed/",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}
