@@ -96,6 +96,12 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'HTML';
     result.title_id = match[2];
     result.unitid   = match[1];
+  } else if ((match = /^\/book\/((.*)\/(.*)\/(index))/i.exec(path)) !== null) {
+    // http://www.chicagomanualofstyle.org:80/book/ed17/backmatter/index/a.html
+    result.rtype    = 'SUPPL';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
   }
 
   return result;
