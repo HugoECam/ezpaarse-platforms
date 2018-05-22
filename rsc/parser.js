@@ -124,6 +124,10 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime   = 'HTML';
     result.unitid = match[1];
     result.publication_date = match[2] + '/' + match[3];
+  } else if (/^\/en\/ebooks$/i.test(path)) {
+    // http://pubs.rsc.org:80/en/ebooks
+    result.rtype  = 'TOC';
+    result.mime   = 'HTML';
   }
 
   return result;
