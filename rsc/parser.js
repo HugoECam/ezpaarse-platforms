@@ -57,21 +57,78 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid           = match[1].replace(/-/g, '');
     result.print_identifier = match[1].replace(/-/g, '');
 
-  } else if ((match = /^\/en\/content\/chapterpdf\/([0-9]+)\/(([0-9]+)-[0-9]+)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/en\/content\/chapter(html|pdf)\/([0-9]+)\/(([0-9]+)-[0-9]+)$/i.exec(path)) !== null) {
     // /en/content/chapterpdf/2013/9781849734738-00001?isbn=978-1-84973-424-0&sercode=bk
     result.rtype  = 'BOOK_SECTION';
-    result.mime   = 'PDF';
-    result.unitid = match[2];
-    result.doi    = `${doiPrefix}/${match[2]}`;
-
-    result.online_identifier = match[3];
-    result.publication_date  = match[1];
+    result.mime   = match[1].toUpperCase();
+    result.unitid = match[3];
+    result.doi    = `${doiPrefix}/${match[3]}`;
+    result.online_identifier = match[4];
+    result.publication_date  = match[2];
 
     if (param.isbn) {
       result.print_identifier = param.isbn.replace(/-/g, '');
     }
+  } else if ((match = /^\/en\/content\/articlelanding\/(.*)\/(.*)\/(.*)$/i.exec(path)) !== null) {
+    // http://pubs.rsc.org:80/en/content/articlelanding/2017/gc/c7gc01801k
+    result.rtype  = 'ABS';
+    result.mime   = 'HTML';
+    result.unitid = match[3];
+    result.doi    = `${doiPrefix}/${match[3]}`;
+  } else if ((match = /^\/en\/content\/chapter\/[a-z]+([-0-9]+)\/([-0-9]+)$/i.exec(path)) !== null) {
+    // http://pubs.rsc.org:80/en/content/chapter/bk9780854042166-00118/978-0-85404-216-6
+    result.rtype  = 'ABS';
+    result.mime   = 'HTML';
+    result.unitid = match[1];
+    result.print_identifier = match[2].replace(/-/g, '');
+  } else if ((match = /^\/lus\/[-a-z]+\/article\/(.*)$/i.exec(path)) !== null) {
+    // http://pubs.rsc.org:80/lus/analytical-abstracts/article/B377448
+    result.rtype  = 'ABS';
+    result.mime   = 'HTML';
+    result.unitid = match[1];
+  } else if ((match = /^\/en\/content\/chapterepub\/(.*)\/bk([-0-9]+)$/i.exec(path)) !== null) {
+    // http://pubs.rsc.org:80/en/content/chapterepub/2017/bk9781782621713-00060?isbn=978-1-78262-171-3
+    result.rtype  = 'BOOK_SECTION';
+    result.mime   = 'MISC';
+    result.unitid = match[2];
+    result.publication_date = match[1];
+    result.print_identifier = param.isbn.replace(/-/g, '');
+  } else if (/results|search/i.test(path)) {
+    // http://pubs.rsc.org:80/lus/analytical-abstracts/search/quicksearch?afreetext=nanotechnology
+    if (/downloadimage/i.test(path)) {
+      result.rtype = 'IMAGE';
+      result.mime  = 'MISC';
+      if (param.id) {
+        result.unitid = param.id;
+      }
+    } else {
+      result.rtype  = 'SEARCH';
+      result.mime   = 'HTML';
+    }
+  } else if (/^\/en\/journals\//i.test(path)) {
+    // http://pubs.rsc.org:80/en/journals/issues
+    result.rtype  = 'TOC';
+    result.mime   = 'HTML';
+  } else if ((match = /^\/news-events\/profiles\/(.*?)\/$/i.exec(path)) !== null) {
+    // http://www.rsc.org:80/news-events/profiles/2018/may/eloise-laity/
+    result.rtype  = 'BIO';
+    result.mime   = 'HTML';
+    result.unitid = match[1];
+  } else if (/^\/Merck-Index\/reference\//i.test(path)) {
+    // https://www.rsc.org:443/Merck-Index/reference/Glossary
+    result.rtype  = 'REF';
+    result.mime   = 'HTML';
+  } else if ((match = /^\/news-events\/articles\/((.*?)\/(.*?)\/(.*?))\/$/i.exec(path)) !== null) {
+    // http://www.rsc.org:80/news-events/articles/2018/may/ib-moves-to-oup/
+    result.rtype  = 'ARTICLE';
+    result.mime   = 'HTML';
+    result.unitid = match[1];
+    result.publication_date = match[2] + '/' + match[3];
+  } else if (/^\/en\/ebooks$/i.test(path)) {
+    // http://pubs.rsc.org:80/en/ebooks
+    result.rtype  = 'TOC';
+    result.mime   = 'HTML';
   }
 
   return result;
 });
-
