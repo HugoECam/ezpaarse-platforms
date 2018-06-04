@@ -4,7 +4,8 @@
   "domains": [
     "www.data-planet.com",
     "readyreference.data-planet.com",
-    "statisticaldatasets.data-planet.com"
+    "statisticaldatasets.data-planet.com",
+    "data-planet.libguides.com"
   ],
   "recognize": {
     "rid": [
