@@ -1,0 +1,21 @@
+{
+  "version": "2018-06-05",
+  "status": "beta",
+  "domains": [
+    "www.swank.com",
+    "digitalcampus.swankmp.net"
+  ],
+  "recognize": {
+    "rid": [
+      "title_id",
+      "unitid"
+    ]
+  },
+  "name": "swank",
+  "longname": "SWANK",
+  "publisher_name": "SWANK Motion Pcitures, INC.",
+  "describe": "Recognizes the accesses to the platform SWANK",
+  "docurl": "http://ang.couperin.org/platforms/to_be_completed/",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}
