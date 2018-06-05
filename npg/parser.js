@@ -225,6 +225,24 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     // https://blog.nature.org:443/science/section/nature-and-you/
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
+  } else if ((match = /^\/articles\/([a-z0-9-]+)$/i.exec(path)) !== null) {
+    // http://www.nature.com:80/articles/d41586-018-02183-y
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.doi      = `${doiPrefix}/${match[1]}`;
+    result.unitid   = match[1];
+  } else if ((match = /^\/articles\/([a-z0-9-]+).pdf$/i.exec(path)) !== null) {
+    // http://www.nature.com:80/articles/493166a.pdf
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.doi      = `${doiPrefix}/${match[1]}`;
+    result.unitid   = match[1];
+  } else if ((match = /^\/subjects\/([a-z-]+)$/i.exec(path)) !== null) {
+    // http://www.nature.com:80/subjects/biological-sciences
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
   }
 
   return result;
