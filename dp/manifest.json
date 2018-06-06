@@ -3,6 +3,8 @@
   "status": "stable",
   "domains": [
     "www.data-planet.com",
+    "data-planet.com",
+    "homepage.data-planet.com",
     "readyreference.data-planet.com",
     "statisticaldatasets.data-planet.com",
     "data-planet.libguides.com"
