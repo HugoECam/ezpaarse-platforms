@@ -84,10 +84,25 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime   = 'MISC';
     result.unitid = match[1];
 
-  } else if (/^\/search$/i.test(path)) {
+  } else if (/^\/search/i.test(path)) {
     // /search?q=aluminum&filter_type_1=and&filter_type_2=or&filter_type_3=not&exclude_sections=0+1+2+4+11+12+14+15+16+17+18+19+20+28+29+30+32+33+34+35+36+37+38+39+40+41+42+43+44+45+46+47+48+49+50+51+52+53+54+55+56+57+58
     result.rtype  = 'SEARCH';
     result.mime   = 'MISC';
+
+  } else if (/^\/journal\/[a-z-]+$/i.test(path)) {
+    // https://www.jove.com:443/journal/behavior
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+
+  } else if (/^\/methods-collections\/[0-9]+\/[a-z-]+$/i.test(path)) {
+    // https://www.jove.com:443/methods-collections/11/mechanical-stimulation-techniques
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+
+  } else if (/^\/science-education\/[a-z]+$/i.test(path)) {
+    // https://www.jove.com:443/science-education/basicbio
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
   }
 
   return result;
