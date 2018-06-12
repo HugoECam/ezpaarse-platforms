@@ -50,9 +50,9 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
       break;
     case 'PDF':
     case 'EXTREF':
-        // http://www.nature.com/nature/journal/v493/n7431/pdf/493166a.pdf
-        // http://www.nature.com/cdd/journal/vaop/ncurrent/pdf/cdd2014195a.pdf
-        // http://www.nature.com/nature/journal/v445/n7125/extref/nature05382-s1.pdf
+      // http://www.nature.com/nature/journal/v493/n7431/pdf/493166a.pdf
+      // http://www.nature.com/cdd/journal/vaop/ncurrent/pdf/cdd2014195a.pdf
+      // http://www.nature.com/nature/journal/v445/n7125/extref/nature05382-s1.pdf
       result.rtype = 'ARTICLE';
       result.mime  = 'PDF';
       break;
@@ -159,6 +159,90 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
       result.doi    = params.doi;
       result.unitid = result.doi.split('/')[1];
     }
+  } else if ((match = /^\/science\/([0-9]+\/[0-9]+\/[0-9]+)\/([a-z-]+)/i.exec(path)) !== null) {
+    // https://blog.nature.org:443/science/2016/05/09/elk-antlers-prairie-shed-hunt-benefit-local-community-kids-nature-activities/?utm_source=cgs&utm_medium=archive&utm_campaign=Connect+with+Nature
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = match[2];
+    result.unitid   = match[2];
+    result.publication_date = match[1];
+  } else if ((match = /^\/content\/([a-z-]+)$/i.exec(path)) !== null) {
+    // https://global.nature.org:443/content/beyond-the-source
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
+  } else if ((match = /^\/magazine\/archives\/([a-z-]+).xml$/i.exec(path)) !== null) {
+    // https://www.nature.org:443/magazine/archives/counting-on-fish.xml
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
+  } else if ((match = /^\/ourinitiatives\/regions\/[a-z]+\/[a-z]+\/[a-z]+\/([a-z-]+).xml$/i.exec(path)) !== null) {
+    // https://www.nature.org:443/ourinitiatives/regions/northamerica/unitedstates/georgia/can-we-save-the-gopher-tortoise.xml
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
+  } else if (/^\/ourinitiatives\/regions\/[a-z]+\/[a-z]+\/[a-z]+\/index.htm$/i.test(path)) {
+    // https://www.nature.org:443/ourinitiatives/regions/northamerica/unitedstates/oregon/index.htm
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+  } else if ((match = /^\/science-in-action\/([a-z-]+)\/index.htm$/i.exec(path)) !== null) {
+    // https://www.nature.org:443/science-in-action/conservation-by-design/index.htm
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
+  } else if ((match = /^\/ourinitiatives\/urgentissues\/([a-z-]+)\/index.htm$/i.exec(path)) !== null) {
+    // https://www.nature.org:443/ourinitiatives/urgentissues/global-warming-climate-change/index.htm?intc=nature.tnav.ourwork
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
+  } else if ((match = /^\/ourinitiatives\/urgentissues\/[a-z-]+\/([a-z-]+)\/index.htm$/i.exec(path)) !== null) {
+    // https://www.nature.org:443/ourinitiatives/urgentissues/global-warming-climate-change/innovate-and-share-science/index.htm?intc3=nature.climate.lp.r1c1
+    result.rtype    = 'REF';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
+  } else if ((match = /^\/photos-and-video\/(photography|video)\/([a-z-]+)/i.exec(path)) !== null) {
+    // https://www.nature.org:443/photos-and-video/video/natureunitesus-louisvillehcsthcsthcst
+    if (match[1] == 'photography') {
+      result.rtype  = 'IMAGE';
+      result.mime   = 'JPG';
+    } else if (match[1] == 'video') {
+      result.rtype    = 'VIDEO';
+      result.mime     = 'HTML';
+      result.title_id = match[2];
+      result.unitid   = match[2];
+    }
+  } else if (/^\/magazine.*\/index.htm/i.test(path)) {
+    // https://www.nature.org:443/magazine/archives/index.htm
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+  } else if (/^\/science\/[a-z]+/i.test(path)) {
+    // https://blog.nature.org:443/science/section/nature-and-you/
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+  } else if ((match = /^\/articles\/([a-z0-9-]+)$/i.exec(path)) !== null) {
+    // http://www.nature.com:80/articles/d41586-018-02183-y
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.doi      = `${doiPrefix}/${match[1]}`;
+    result.unitid   = match[1];
+  } else if ((match = /^\/articles\/([a-z0-9-]+).pdf$/i.exec(path)) !== null) {
+    // http://www.nature.com:80/articles/493166a.pdf
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.doi      = `${doiPrefix}/${match[1]}`;
+    result.unitid   = match[1];
+  } else if ((match = /^\/subjects\/([a-z-]+)$/i.exec(path)) !== null) {
+    // http://www.nature.com:80/subjects/biological-sciences
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[1];
   }
 
   return result;

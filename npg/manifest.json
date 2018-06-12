@@ -11,7 +11,23 @@
   "pkb": true,
 	"domains": [
     "www.nature.com",
-    "nano.nature.com"
+    "nano.nature.com",
+    "mts-nbt.nature.com",
+    "mts-nchem.nature.com",
+    "mts-ncomms.nature.com",
+    "mts-nenergy.nature.com",
+    "mts-ng.nature.com",
+    "mts-ni.nature.com",
+    "mts-nm.nature.com",
+    "mts-nmicrobiol.nature.com",
+    "mts-nn.nature.com",
+    "mts-nri.nature.com",
+    "mts-nrmicro.nature.com",
+    "mts-nrn.nature.com",
+    "cancer-immunity.nature.com",
+    "masterclasses.nature.com",
+    "blog.nature.org",
+    "global.nature.org"
 	],
   "bacon": {
     "provider": "NPG"
