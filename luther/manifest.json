@@ -1,0 +1,19 @@
+{
+  "version": "2018-06-13",
+  "status": "beta",
+  "domains": [
+    "luther.chadwyck.com"
+  ],
+  "recognize": {
+    "rid": [
+      "title_id",
+      "unitid"
+    ]
+  },
+  "name": "luther",
+  "longname": "Luthers Werke",
+  "describe": "Recognizes the accesses to the platform Luthers Werke",
+  "docurl": "http://ang.couperin.org/platforms/5b21799c55be03685c7848e3",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}
