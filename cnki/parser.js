@@ -16,8 +16,10 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   // uncomment this line if you need parameters
   let param = parsedUrl.query || {};
 
+  let host  = parsedUrl.hostname;
+
   // use console.error for debuging
-  // console.error(parsedUrl);
+  console.error(parsedUrl);
 
   if (/^\/kcms\/detail\/search.aspx$/i.test(path)) {
     // http://oversea.cnki.net:80/kcms/detail/search.aspx?dbcode=CJFD&sfield=kw&skey=large+jellyfish
@@ -49,6 +51,10 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     if (param.cflag === 'pdf') {
       result.mime   = 'PDF';
     }
+  } else if (/^search.cnki.net$/i.test(host)) {
+    // http://search.cnki.net:80/sug/su.ashx?action=getsmarttips&kw=.&t=%E4%B8%BB%E9%A2%98&dbt=SCDB&attr=1&p=0.012968422931534329&td=1529000160728
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
   }
 
   return result;
