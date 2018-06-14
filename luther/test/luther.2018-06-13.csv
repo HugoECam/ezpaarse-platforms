@@ -1,5 +1,0 @@
-out-title_id;out-unitid;out-rtype;out-mime;in-url
-;;SEARCH;HTML;http://luther.chadwyck.com:80/english/frames/werke/search
-;;TOC;HTML;http://luther.chadwyck.com:80/english/frames/werke/htxview?template=toc_hdft.htx&content=toc_top.htx
-L0000085;L0000085;TOC;HTML;http://luther.chadwyck.com:80/english/frames/werke/toc?action=byid&id=L0000085&CONTROL=ON
-Z000018206;Z000018206;BOOK;HTML;http://luther.chadwyck.com:80/english/frames/werke/fulltext?ALL=Y&action=byid&warn=Y&size=2877&id=Z000018206&div=0&sequence=0&file=../session/1528322223_25559
