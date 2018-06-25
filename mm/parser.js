@@ -35,7 +35,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'HTML';
     result.title_id = match[2];
     result.unitid   = match[1];
-  } else if ((match = /^\/reader\/([0-9]+)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/reader\/([0-9]+)/i.exec(path)) !== null) {
     // https://www.ministrymatters.com:443/reader/9781426725845
     result.rtype    = 'BOOK_SECTION';
     result.mime     = 'HTML';
