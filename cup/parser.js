@@ -101,6 +101,29 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
       result.title_id = match[1];
       break;
     }
+  } else if ((match = /^\/core\/books\/([a-z-]+)\/([A-Z0-9]+)$/i.exec(pathname)) !== null) {
+    // https://www.cambridge.org:443/core/books/cambridge-companion-to-literature-and-science/C5374AB01C8B18E3B0FC30BAADCC47E4
+    result.rtype    = 'ABS';
+    result.mime     = 'HTML';
+    result.title_id = match[1];
+    result.unitid   = match[2];
+  } else if ((match = /^\/core\/services\/([a-z-]+)\/content\/view\/[A-Z0-9]+\/([0-9]+)([a-z0-9_-]+).pdf$/i.exec(pathname)) !== null) {
+    // https://www.cambridge.org:443/core/services/aop-cambridge-core/content/view/EBAE0C3BE30489B1FB3FD9F3C0A6BFF0/9781107079724pre_i-iv.pdf
+    result.rtype    = 'BOOK_SECTION';
+    result.mime     = 'PDF';
+    result.print_identifier = match[2];
+    result.title_id = match[2] + match[3];
+    result.unitid   = match[2] + match[3];
+  } else if ((match = /^\/core\/books\/(([a-z-]+)\/([a-z-]+)\/([A-Z0-9]+))\/core-reader$/i.exec(pathname)) !== null) {
+    // https://www.cambridge.org:443/core/books/cambridge-companion-to-literature-and-science/snapshots-of-the-past/282F6D92996735EEE8E70BFBED86430B/core-reader
+    result.rtype    = 'BOOK_SECTION';
+    result.mime     = 'HTML';
+    result.title_id = match[2] + '/' + match[3];
+    result.unitid   = match[4];
+  } else if (/listing$/i.test(pathname)) {
+    // https://www.cambridge.org:443/core/what-we-publish/collections/cambridge-companions/listing?q=faust&_csrf=3HhJxEcN-EMt5CWeaJRlAfXzrE8Za9Pact-c&searchWithinIds=CC5F57B75036F7D224B3BDE3A8A31A7F
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
   } else {
     // if nothing recognized remove jid
     result.title_id = null;
