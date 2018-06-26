@@ -34,6 +34,10 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'MISC';
     result.title_id = param.articleid;
     result.unitid   = param.issue;
+  } else if (/^\/pressdisplay\/check.session$/i.test(path)) {
+    // http://library.pressdisplay.com:80/pressdisplay/check.session?callback=check_session_callback&t=1530033483839
+    result.rtype    = 'CONNECTION';
+    result.mime     = 'HTML';
   }
 
   return result;
