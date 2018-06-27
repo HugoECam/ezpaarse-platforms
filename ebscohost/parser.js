@@ -29,6 +29,9 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   let path   = parsedUrl.pathname;
   let param  = parsedUrl.query || {};
 
+  // use console.error for debuging
+  // console.error(parsedUrl);
+
   let match;
 
   if ((match = /^\/(ehost|eds)\/([a-z]+)(?:\/[a-z]+)?$/i.exec(path)) !== null) {
@@ -123,9 +126,9 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     if (result.unitid && result.unitid.toLowerCase().startsWith('doi:')) {
       result.doi = result.unitid = result.unitid.substr(4);
     }
-  } if (result.doi == null) {
+  } if (/^\/login.aspx$/i.test(path)) {
     // http://search.ebscohost.com:80/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=apn
-    result.rtype    = 'REF';
+    result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
     if (param.defaultdb === 'apn') {
       result.publication_title = 'Alternative Press Index';
@@ -185,6 +188,12 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
       result.publication_title = 'SocINDEX with Full Text';
     } else if (param.defaultdb === 'fyh') {
       result.publication_title = 'Women\'s Studies International';
+    } else if (param.defaultdb === 'lsdar') {
+      result.publication_title = 'ATLA Religion Database with ATLASerials PLUS';
+    } else if (param.defaultdb === 'rvh') {
+      result.publication_title = 'New Testament Abstracts';
+    } else if (param.defaultdb === 'oah') {
+      result.publication_title = 'Old Testament Abstracts';
     }
   }
 
