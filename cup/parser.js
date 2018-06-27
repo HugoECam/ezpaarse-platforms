@@ -107,7 +107,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.mime     = 'HTML';
     result.title_id = match[1];
     result.unitid   = match[2];
-  } else if ((match = /^\/core\/services\/([a-z-]+)\/content\/view\/[A-Z0-9]+\/([0-9]+)([a-z0-9_-]+).pdf$/i.exec(pathname)) !== null) {
+  } else if ((match = /^\/core\/services\/([a-z-]+)\/content\/view\/[A-Z0-9]+\/([0-9]+)([a-z0-9_-]+).pdf/i.exec(pathname)) !== null) {
     // https://www.cambridge.org:443/core/services/aop-cambridge-core/content/view/EBAE0C3BE30489B1FB3FD9F3C0A6BFF0/9781107079724pre_i-iv.pdf
     result.rtype    = 'BOOK_SECTION';
     result.mime     = 'PDF';
