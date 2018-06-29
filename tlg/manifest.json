@@ -1,0 +1,18 @@
+{
+  "version": "2018-06-25",
+  "status": "beta",
+  "domains": [
+    "stephanus.tlg.uci.edu"
+  ],
+  "recognize": {
+    "rid": [
+      "title_id"
+    ]
+  },
+  "name": "tlg",
+  "longname": "Thesaurus Linguae Graecae",
+  "describe": "Recognizes the accesses to the platform Thesaurus Linguae Graecae",
+  "docurl": "http://ang.couperin.org/platforms/56fd3cd815ae306636c96da9",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}
