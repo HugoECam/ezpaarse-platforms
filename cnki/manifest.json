@@ -1,0 +1,26 @@
+{
+  "version": "2018-05-23",
+  "status": "beta",
+  "domains": [
+    "cnki.net",
+    "en.oversea.cnki.net",
+    "eng.oversea.cnki.net",
+    "gb.oversea.cnki.net",
+    "oversea.cnki.net",
+    "hd.cnki.net",
+    "search.cnki.net",
+    "x.cnki.net",
+    "r.cnki.net" 
+  ],
+  "recognize": {
+    "rid": [
+      "quit"
+    ]
+  },
+  "name": "cnki",
+  "longname": "CNKI",
+  "describe": "Recognizes the accesses to the platform CNKI",
+  "docurl": "http://ang.couperin.org/platforms/59561ef9f98950acd74a2c89",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}

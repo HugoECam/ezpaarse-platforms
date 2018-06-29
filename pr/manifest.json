@@ -1,0 +1,16 @@
+{
+  "version": "2018-06-07",
+  "status": "beta",
+  "domains": [
+    "www.pressreader.com:80"
+  ],
+  "recognize": {
+    "rid": []
+  },
+  "name": "pr",
+  "longname": "PressReader",
+  "describe": "Recognizes the accesses to the platform PressReader",
+  "docurl": "http://ang.couperin.org/platforms/to_be_completed/",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}

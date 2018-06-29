@@ -10,10 +10,74 @@ const Parser = require('../.lib/parser.js');
 module.exports = new Parser(function analyseEC(parsedUrl) {
   let result = {};
   let path   = parsedUrl.pathname;
-  let param  = parsedUrl.query || {};
   let match;
 
-  if ((match = /\/journal\/(10\.[0-9]+\/(\(ISSN\)([0-9]{4}-[0-9]{3}[0-9xX])))/i.exec(path)) !== null) {
+  if ((match = /^\/pdf\/(10\.[0-9]+\/([0-9x]+))(\.ch[0-9]+)$/i.exec(path)) !== null) {
+    // /pdf/10.1002/9781118638323.ch3
+    result.rtype  = 'BOOK_SECTION';
+    result.mime   = 'PDF';
+    result.doi    = match[1];
+    result.unitid = `${match[2]}${match[3]}`;
+    result.online_identifier = match[2];
+
+  } else if ((match = /^\/doi(\/[a-z]+)?\/(10\.[0-9]+\/([a-z0-9._-]+?))(\.fmatter)?$/i.exec(path)) !== null) {
+    result.doi    = match[2];
+    result.unitid = match[3];
+
+    if (!match[1]) {
+      // /doi/10.1002/brb3.590
+      result.rtype = 'ARTICLE';
+      result.mime  = 'HTML';
+      return result;
+    }
+
+    switch (match[1]) {
+    case '/pdf':
+    case '/epdf':
+      // /doi/pdf/10.1002/brb3.590
+      // /doi/epdf/10.1002/brb3.590
+      result.rtype = 'ARTICLE';
+      result.mime  = 'PDF';
+      break;
+    case '/full':
+      // /doi/full/10.1002/brb3.590
+      result.rtype = 'ARTICLE';
+      result.mime  = 'HTML';
+      break;
+    case '/abs':
+      // /doi/abs/10.1002/brb3.590
+      result.rtype = 'ABS';
+      result.mime  = 'HTML';
+      break;
+    case '/book':
+      // /doi/book/10.1002/047084289X
+      result.rtype = 'TOC';
+      result.mime  = 'MISC';
+      break;
+    }
+
+    if (match[4]) {
+      // /doi/pdf/10.1002/9781118843109.fmatter
+      result.rtype = 'BOOK_SECTION';
+      result._granted = false;
+    }
+
+  } else if ((match = /^\/toc\/toc\/(([0-9]+)\/([0-9]+)\/([0-9]+))$/i.exec(path)) !== null) {
+    // /toc/toc/21579032/7/1
+    result.rtype    = 'TOC';
+    result.mime     = 'MISC';
+    result.unitid   = match[1];
+    result.title_id = match[2];
+    result.vol      = match[3];
+    result.issue    = match[4];
+
+  } else if ((match = /^\/journal\/([0-9]+)$/i.exec(path)) !== null) {
+    // /journal/21579032
+    result.rtype    = 'TOC';
+    result.mime     = 'MISC';
+    result.title_id = match[1];
+
+  } else if ((match = /\/journal\/(10\.[0-9]+\/(\(ISSN\)([0-9]{4}-[0-9]{3}[0-9xX])))/i.exec(path)) !== null) {
     // /journal/10.1111/%28ISSN%291600-5724
     result.doi    = match[1];
     result.unitid = match[2];
@@ -84,7 +148,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.doi      = match[1];
     result.unitid   = match[2];
     result.title_id = match[2].toUpperCase();
-    result.rtype    = 'BOOK_SECTION';
+    result.rtype    = 'TOC';
     result.mime     = 'MISC';
 
     result.print_identifier = match[2];
@@ -126,18 +190,6 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
 
-  } else if (/^\/readcube$/i.test(path)) {
-    // /readcube?callback=jQuery21009089781963266432_1408430129173&resource=10.1002%2F2014GC005230&_=1408430129174
-    result.rtype = 'ARTICLE';
-    result.mime  = 'READCUBE';
-
-    if (param.resource) {
-      result.doi    = param.resource;
-      result.unitid = param.resource.split('/')[1];
-      if ((match = /(10\.[0-9]+)\/([0-9]{4})([a-z0-9]{2})([^/]+)$/i.exec(param.resource)) !== null) {
-        result.title_id = match[3].toUpperCase();
-      }
-    }
   } else if ((match = /^\/doi\/(10\.[0-9]+\/([a-z]{1}[0-9]{8}([0-9]{2})[a-z0-9]+))\/pdf$/i.exec(path)) !== null) {
     // /doi/10.1107/S1399004715000292/pdf
     result.doi      = match[1];
@@ -193,13 +245,12 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
 
     result.publication_date = match[4];
 
-  } else if ((match = /^\/doi\/(10\.[0-9]+\/(([0-9]{2,4})([a-z]+)[0-9]+))\/(pdf|full)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/doi\/(10\.[0-9]+\/(([0-9]{2,4})([a-z]+)[0-9]+))\/(e?pdf|full)$/i.exec(path)) !== null) {
     // /doi/10.1002/2015TC003829/pdf
     result.doi      = match[1];
     result.unitid   = match[2];
     result.title_id = match[4].toUpperCase();
     result.rtype    = 'ARTICLE';
-    result.mime     = match[5] === 'pdf' ? 'PDF' : 'HTML';
 
     result.publication_date = match[3];
 
@@ -207,12 +258,29 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
       result.publication_date = '19' + match[3];
     }
 
-  } else if ((match = /^\/doi\/(10\.[0-9]+\/([^.]+))\/(pdf|full)$/i.exec(path)) !== null) {
+    switch (match[5]) {
+    case 'pdf':
+    case 'epdf':
+      result.mime = 'PDF';
+      break;
+    case 'full':
+      result.mime = 'HTML';
+    }
+
+  } else if ((match = /^\/doi\/(10\.[0-9]+\/([^.]+))\/(epdf|pdf|full)$/i.exec(path)) !== null) {
     // /doi/10.1029/JZ072i023p05799/pdf
     result.doi    = match[1];
     result.unitid = match[2];
     result.rtype  = 'ARTICLE';
-    result.mime   = match[3] === 'pdf' ? 'PDF' : 'HTML';
+
+    switch (match[3]) {
+    case 'pdf':
+    case 'epdf':
+      result.mime = 'PDF';
+      break;
+    case 'full':
+      result.mime = 'HTML';
+    }
   }
 
   return result;

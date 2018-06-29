@@ -1,10 +1,17 @@
 {
-  "version": "2016-10-04",
-  "status": "beta",
+  "version": "2018-06-25",
+  "status": "stable",
   "domains": [
     "http://luther.chadwyck.co.uk",
+    "luther.chadwyck.com",
     "http://acta.chadwyck.co.uk",
-    "http://pld.chadwyck.co.uk/"
+    "http://pld.chadwyck.co.uk/",
+    "ble.chadwyck.com",
+    "britishperiodicals.chadwyck.co.uk",
+    "colonial.chadwyck.com",
+    "collections.chadwyck.com",
+    "lion.chadwyck.com",
+    "www.journal.csj.jp"
   ],
   "recognize": {
     "rid": [
