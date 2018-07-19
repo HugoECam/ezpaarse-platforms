@@ -15,6 +15,12 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.mime     = 'MISC';
     result.rtype    = match[3] === 'toc' ? 'TOC' : 'ABS';
 
+  } else if ((match = /^\/browse\/series\/([1180])/.exec(parsedUrl.pathname)) !== null) {
+   // http://muse.jhu.edu:80/browse/series/1180
+    result.unitid   = 'Hermeneia Commentary Series';
+    result.title_id = 'Hermeneia Commentary Series';
+    result.mime	    = 'SEARCH';
+  
   } else if ((match = /^\/journals\/(([^/]+)\/[^/]+\/.*).(pdf|html)$/.exec(parsedUrl.pathname)) !== null) {
     // http://muse.jhu.edu:80/journals/george_herbert_journal/v034/34.1-2.newton.pdf
     // http://muse.jhu.edu:80/journals/george_herbert_journal/v034/34.1-2.newton.html
