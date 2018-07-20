@@ -126,7 +126,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     if (result.unitid && result.unitid.toLowerCase().startsWith('doi:')) {
       result.doi = result.unitid = result.unitid.substr(4);
     }
-  } if (/^\/login.aspx$/i.test(path)) {
+  } if (/^\/(login.aspx|start)$/i.test(path)) {
     // http://search.ebscohost.com:80/login.aspx?authtype=ip,uid&profile=ehost&defaultdb=apn
     result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
