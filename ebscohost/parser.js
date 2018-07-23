@@ -29,9 +29,6 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   let path   = parsedUrl.pathname;
   let param  = parsedUrl.query || {};
 
-  // use console.error for debuging
-  // console.error(parsedUrl);
-
   let match;
 
   if ((match = /^\/(ehost|eds)\/([a-z]+)(?:\/[a-z]+)?$/i.exec(path)) !== null) {
