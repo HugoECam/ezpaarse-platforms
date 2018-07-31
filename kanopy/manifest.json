@@ -10,7 +10,8 @@
 	"domains": [
     "www.kanopystreaming.com",
     "emory.kanopystreaming.com",
-    "help.kanopystreaming.com"
+    "help.kanopystreaming.com",
+    "emory.kanopy.com"
 	],
   "pkb": false
 }
