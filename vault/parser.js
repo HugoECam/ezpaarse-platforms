@@ -21,7 +21,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
   let match;
 
-  if (/^\/search-results$/i.test(path)) {
+  if (/^\/search-results/i.test(path)) {
     // http://www.vault.com:80/search-results?q=google&wt=comp
     result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
