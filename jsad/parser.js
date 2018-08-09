@@ -42,6 +42,17 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     }
     result.doi      = match[2].toLowerCase();
     result.unitid   = match[3].toLowerCase();
+  } else if ((match = /^\/toc\/(([a-z]+)\/([0-9]+)\/([0-9]+))$/i.exec(path)) !== null) {
+    // https://www.jsad.com:443/toc/jsad/79/4
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.vol      = match[3];
+    result.issue    = match[4];
+    result.unitid   = match[1];
+  } else if (/^\/loi\/jsad$/i.test(path)) {
+    // https://www.jsad.com:443/loi/jsad
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
   }
 
   return result;
