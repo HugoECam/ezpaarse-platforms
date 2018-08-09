@@ -29,7 +29,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://www.jurology.com:443/article/S0022-5347(18)43403-9/fulltext
     result.rtype    = 'ARTICLE';
     result.pii      = match[1];
-    result.unitid   = match[1];
+    result.unitid   = match[1] + '/' + match[2];
     switch (match[2]) {
     case 'fulltext':
       result.mime = 'HTML';
@@ -50,7 +50,6 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
     result.pii      = match[1];
-    result.unitid   = match[1];
   }
 
   return result;
