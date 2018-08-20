@@ -17,7 +17,10 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
   let match;
 
-  if ((match = /^\/([a-z_]+)\.do$/i.exec(path)) !== null) {
+  if (/Search.action$/i.test(path)) {
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
+  } else if ((match = /^\/([a-z_]+)\.do$/i.exec(path)) !== null) {
     // /UA_GeneralSearch_input.do?product=UA&search_mode=GeneralSearch
     // /Search.do?product=UA&search_mode=GeneralSearch&prID=dcfade3d-550a-4076-92a6-bd6708e2c64c
     // /full_record.do?product=UA&search_mode=GeneralSearch&qid=14&page=1&doc=2
@@ -45,6 +48,20 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     case 'CitationReport' :
       result.rtype = 'ANALYSIS';
       result.mime  = 'MISC';
+      if (productId) {
+        result.title_id = productId;
+      }
+      break;
+    case 'CitedFullRecord' :
+      result.rtype = 'ABS';
+      result.mime  = 'HTML';
+      if (productId) {
+        result.title_id = productId;
+      }
+      break;
+    case 'OneClickSearch' :
+      result.rtype = 'SEARCH';
+      result.mime  = 'HTML';
       if (productId) {
         result.title_id = productId;
       }
@@ -98,6 +115,14 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // /RA/analyze.do
     result.rtype = 'ANALYSIS';
     result.mime  = 'MISC';
+  } else if (/Search.action/i.test(path)) {
+    // http://www.researcherid.com:80/ViewHomePageProfileSearch.action;jsessionid=4FEB05D72CFAC9E8E29C18C5BB0C730B
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
+  } else if ((match = /^\/rid\/[A-Za-z0-9-]+$/i.exec(path)) !== null) {
+    // http://www.researcherid.com:80/rid/F-5186-2010
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
   }
 
   return result;
