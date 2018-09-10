@@ -1,0 +1,19 @@
+{
+  "version": "2018-09-05",
+  "status": "beta",
+  "domains": [
+    "www.palgrave.com",
+    "palgrave.nature.com"
+  ],
+  "recognize": {
+    "rid": [
+      "print_identifier"
+    ]
+  },
+  "name": "palgrave-macmillan",
+  "longname": "Palgrave Macmillan",
+  "describe": "Recognizes the accesses to the platform Palgrave Macmillan",
+  "docurl": "http://ang.couperin.org/platforms/to_be_completed/",
+  "contact": "alexander.cooper@emory.edu",
+  "pkb": false
+}
