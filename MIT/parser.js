@@ -98,6 +98,42 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'PDF';
     result.unitid   = match[2];
     result.print_identifier = match[1];
+  } else if ((match = /^\/book\/(.*)$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu:80/book/becoming-human
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
+  } else if ((match = /^\/erefs\/(.*)$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu:80/erefs/cognitive-neurosciences-5th-edition
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
+  } else if ((match = /^$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu:80/journals/journal-of-cognitive-neuroscience/21/8
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
+  } else if ((match = /^\/topics\/(.*)$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu:80/topics/299
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
+  } else if ((match = /^\/books\/$/i.exec(path)) !== null) {
+    // https://mitpress.mit.edu:443/books/open-access
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
+  } else if ((match = /^\/journal-issue\/$/i.exec(path)) !== null) {
+    // https://www.leonardo.info:443/journal-issue/leonardo-electronic-almanac/22/2
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
   }
 
   return result;
