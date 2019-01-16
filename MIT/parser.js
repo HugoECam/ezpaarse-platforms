@@ -134,6 +134,12 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'HTML';
     result.unitid   = match[1];
     result.title_id = match[1];
+  } else if ((match = /^\/journals\/(.*)$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu:80/journals/journal-of-cognitive-neuroscience/21/8
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+    result.title_id = match[1];
   }
 
   return result;
