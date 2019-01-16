@@ -122,13 +122,13 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'HTML';
     result.unitid   = match[1];
     result.title_id = match[1];
-  } else if ((match = /^\/books\/$/i.exec(path)) !== null) {
+  } else if ((match = /^\/books\/(.*)$/i.exec(path)) !== null) {
     // https://mitpress.mit.edu:443/books/open-access
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
     result.unitid   = match[1];
     result.title_id = match[1];
-  } else if ((match = /^\/journal-issue\/$/i.exec(path)) !== null) {
+  } else if ((match = /^\/journal-issue\/(.*)$/i.exec(path)) !== null) {
     // https://www.leonardo.info:443/journal-issue/leonardo-electronic-almanac/22/2
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
