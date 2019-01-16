@@ -46,7 +46,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'HTML';
     result.title_id = match[1];
     result.unitid   = match[1];
-  } else if ((match = /^\/journal\/(([0-9]{2}\.[0-9]{4})\/([a-zA-Z]+\.[0-9]+\.[0-9]+))$/i.exec(path)) !== null) {
+  } else if ((match = /^\/journal\/(([0-9]{2}\.[0-9]{4})\/(.*))$/i.exec(path)) !== null) {
     // http://cognet.mit.edu:80/journal/10.1162/jocn.2009.21112
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
@@ -73,6 +73,12 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid   = doi_prefix + match[1];
     result.doi      = doi_prefix + match[1];
     result.title_id = match[1];
+  } else if ((match = /^\/pdfviewer\/book\/(([0-9]+)\/(.*))$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu.proxy.library.emory.edu/pdfviewer/book/9780262329644/chap2
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'PDF';
+    result.unitid   = match[1];
+    result.print_identifier = match[2];
   } else if ((match = /^\/doi\/pdf\/(([0-9]{2}\.[0-9]{4})\/([0-9a-zA-Z_.]+))$/i.exec(path)) !== null) {
     // https://www.mitpressjournals.org:443/doi/pdf/10.1162/DAED_a_00392
     result.rtype    = 'ARTICLE';
@@ -98,6 +104,13 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime     = 'PDF';
     result.unitid   = match[2];
     result.print_identifier = match[1];
+  } else if ((match = /^\/system\/cogfiles\/journalpdfs\/(.*).pdf$/i.exec(path)) !== null) {
+    // http://cognet.mit.edu:80/journal/10.1162/netn_a_00037
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'PDF';
+    result.unitid   = doi_prefix + match[1];
+    result.doi      = doi_prefix + match[1];
+    result.title_id = match[1];
   } else if ((match = /^\/book\/(.*)$/i.exec(path)) !== null) {
     // http://cognet.mit.edu:80/book/becoming-human
     result.rtype    = 'TOC';
