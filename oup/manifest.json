@@ -20,7 +20,9 @@
     "www.oxfordhandbooks.com",
     "public.oed.com",
     "www.oed.com",
-    "annualreport.oup.com"
+    "annualreport.oup.com",
+    "www.oxfordartonline.com",
+    "www.oxfordscholarship.com"
 	],
   "bacon": {
     "provider": "OUP"
