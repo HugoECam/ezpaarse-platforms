@@ -2,7 +2,8 @@
   "version": "2018-08-09",
   "status": "beta",
   "domains": [
-    "www.jurology.com"
+    "www.jurology.com",
+    "www.auajournals.org"
   ],
   "recognize": {
     "rid": [
