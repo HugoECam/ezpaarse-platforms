@@ -2,7 +2,9 @@
   "version": "2016-05-09",
   "status": "beta",
   "domains": [
-    "www.ams.org"
+    "www.ams.org",
+    "ams.org",
+    "mathscinet.ams.org"
   ],
   "recognize": {
     "rid": [
