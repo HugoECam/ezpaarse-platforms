@@ -18,13 +18,13 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   // let param = parsedUrl.query || {};
 
   // use console.error for debuging
-  // console.error(parsedUrl);
+  console.error(parsedUrl);
 
   let match;
 
-  if (/^\/ksa\/.*$/i.test(path)) {
-    //https://emory.kanopy.com:443/ksa/tr?ksa_page_url=https%3A%2F%2Femory-kanopy-com.proxy.library.emory.edu%2F&ksa_page_title=Kanopy+-+Stream+Classic+Cinema%2C+Indie+Film+and+Top+Documentaries&ksa_http_referrer=
-    result.rtype    = 'CONNECTION'
+  if ((match = /^\/ksa\/tr(.*)/i.exec(path)) !== null) {
+    // https://emory.kanopy.com:443/ksa/tr?ksa_page_url=https%3A%2F%2Femory-kanopy-com.proxy.library.emory.edu%2F&ksa_page_title=Kanopy+-+Stream+Classic+Cinema%2C+Indie+Film+and+Top+Documentaries&ksa_http_referrer=
+    result.rtype    = 'CONNECTION';
     result.mime     = 'MISC';
   } else if ((match = /^\/wayf\/product\/(.*)$/i.exec(path)) !== null) {
     // https://www.kanopystreaming.com:443/wayf/product/fridays-farm
