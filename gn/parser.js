@@ -23,7 +23,6 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   if (param && param.link) {
     let cleanLink = param.link.replace(/\s+/g, '');
     let type      = cleanLink.split('_');
-
     switch (type[1]) {
     case 'article':
       // numerique-bases/index.php?module=App&action=PanelText&link=jmp_article_17%09-A-%0A
@@ -40,39 +39,32 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     }
   } else if ((match = /^\/doi\/[a-z]+-([a-z]+)?$/.exec(path)) !== null) {
     // /doi/article-pdf?article=HpeMS02_9
-
     if (match[1] === 'pdf') {
       result.mime = 'PDF';
     }
-
     if (param && param.article) {
       result.rtype  = 'ARTICLE';
       result.unitid = param.article;
     }
-
-
-
   } else if ((match = /^\/search$/.exec(path)) !== null) {
     // https://classiques-garnier.com/search
-       result.rtype  = 'SEARCH';
-       result.mime   = 'HTML';
+    result.rtype  = 'SEARCH';
+    result.mime   = 'HTML';
   } else if ((match = /^\/export\/pdf\/(.*)$/.exec(path)) !== null) {
     // https://classiques-garnier.com:443/export/pdf/cahiers-de-memoire-kigali-2019-carte-du-rwanda.html?displaymode=full
-       result.rtype  = 'BOOK CHAPTER';
-       result.mime   = 'PDF';
+    result.rtype  = 'BOOK CHAPTER';
+    result.mime   = 'PDF';
   } else if ((match = /^\/(.*)\.html$/.exec(path)) !== null) {
     // https://classiques-garnier.com:443/cahiers-de-memoire-kigali-2019-carte-du-rwanda.html
-
     if (param.displaymode == 'full') {
-       result.rtype  = 'BOOK CHAPTER';
-       result.mime   = 'HTML';
+      result.rtype  = 'BOOK CHAPTER';
+      result.mime   = 'HTML';
     }
     if (param.displaymode !== 'full') {
-       result.rtype  = 'TOC';
-       result.mime   = 'HTML';
+      result.rtype  = 'TOC';
+      result.mime   = 'HTML';
     }
   }
 
   return result;
 });
-
