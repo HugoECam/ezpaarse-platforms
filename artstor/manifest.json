@@ -3,6 +3,7 @@
   "status": "beta",
   "domains": [
     "library.artstor.org"
+    "artstor.org"
   ],
   "recognize": {
     "rid": [
