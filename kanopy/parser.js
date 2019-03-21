@@ -22,7 +22,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
   let match;
 
-  if ((match = /^\/ksa\/tr(.*)/i.exec(path)) !== null) {
+  if (/^\/ksa\/tr/i.test(path)) {
     // https://emory.kanopy.com:443/ksa/tr?ksa_page_url=https%3A%2F%2Femory-kanopy-com.proxy.library.emory.edu%2F&ksa_page_title=Kanopy+-+Stream+Classic+Cinema%2C+Indie+Film+and+Top+Documentaries&ksa_http_referrer=
     result.rtype    = 'CONNECTION';
     result.mime     = 'MISC';
