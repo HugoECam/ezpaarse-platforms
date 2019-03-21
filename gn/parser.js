@@ -15,6 +15,9 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   let path   = parsedUrl.pathname;
   let param  = parsedUrl.query || {};
 
+  // use console.error for debuging
+  // console.error(parsedUrl);
+
   let match;
 
   if (param && param.link) {
@@ -47,6 +50,27 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
       result.unitid = param.article;
     }
 
+
+
+  } else if ((match = /^\/search$/.exec(path)) !== null) {
+    // https://classiques-garnier.com/search
+       result.rtype  = 'SEARCH';
+       result.mime   = 'HTML';
+  } else if ((match = /^\/export\/pdf\/(.*)$/.exec(path)) !== null) {
+    // https://classiques-garnier.com:443/export/pdf/cahiers-de-memoire-kigali-2019-carte-du-rwanda.html?displaymode=full
+       result.rtype  = 'BOOK CHAPTER';
+       result.mime   = 'PDF';
+  } else if ((match = /^\/(.*)\.html$/.exec(path)) !== null) {
+    // https://classiques-garnier.com:443/cahiers-de-memoire-kigali-2019-carte-du-rwanda.html
+
+    if (param.displaymode == 'full') {
+       result.rtype  = 'BOOK CHAPTER';
+       result.mime   = 'HTML';
+    }
+    if (param.displaymode !== 'full') {
+       result.rtype  = 'TOC';
+       result.mime   = 'HTML';
+    }
   }
 
   return result;

@@ -3,6 +3,7 @@
   "status": "beta",
   "domains": [
     "www.classiques-garnier.com"
+    "classiques-garnier.com"
   ],
   "bacon": {
     "provider": "CLASSIQUESGARNIER"
