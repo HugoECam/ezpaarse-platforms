@@ -67,6 +67,12 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.mime   = match[2].toUpperCase();
     result.unitid = match[1];
 
+  } else if (/^\/services\/sort\/properties$/i.test(path)) {
+    // /services/sort/properties?context=substances&databaseId=0&resultName=RX001_1579269274061645719
+    // /services/sort/properties?context=citations&databaseId=0&resultName=RX006_1579269274061645719
+    result.rtype = 'SEARCH';
+    result.mime  = 'MISC';
+
   }
   /* temporarily disabled
   /* line to add to the test file :
