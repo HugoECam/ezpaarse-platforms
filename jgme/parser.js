@@ -21,23 +21,26 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
   let match;
 
-  if ((match = /^\/toc\/jgme\/([0-9]+)\/([0-9]+)$/i.exec(path)) !== null) {
+  if ((match = /^\/toc\/jgme\/([0-9]+)\/([a-zA-Z0-9]+)$/i.exec(path)) !== null) {
     // https://www.jgme.org:443/toc/jgme/11/1
     // https://www.jgme.org:443/toc/jgme/3/4
     result.rtype    = 'TOC';
     result.mime     = 'HTML';
-  } else if ((match = /^\/doi\/full\/([0-9.]+)\/([a-zA-Z0-9.-]+)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/doi\/([a-z]+)\/([0-9.]+)\/([a-zA-Z0-9.-]+)$/i.exec(path)) !== null) {
+    // https://www.jgme.org:443/doi/abs/10.4300/JGME-D-11-00027.1
     // https://www.jgme.org:443/doi/full/10.4300/JGME-D-18-01093.1
-    // https://www.jgme.org:443/doi/full/10.4300/JGME-D-11-00221.1
-    result.rtype    = 'ARTICLE';
-    result.mime     = 'HTML';
-    result.title_id = match[2];
-  } else if ((match = /^\/doi\/pdf\/([0-9.]+)\/([a-zA-Z0-9.-]+)$/i.exec(path)) !== null) {
     // https://www.jgme.org:443/doi/pdf/10.4300/JGME-D-18-01093.1
-    // https://www.jgme.org:443/doi/pdf/10.4300/JGME-D-11-00221.1
+    if (match[1] == 'abs') {
+      result.mime = 'ABSTRACT';
+    }
+    if (match[1] == 'full') {
+      result.mime = 'HTML';
+    }
+    if (match[1] == 'pdf') {
+      result.mime = 'PDF';
+    }
     result.rtype    = 'ARTICLE';
-    result.mime     = 'PDF';
-    result.title_id = match[2];
+    result.doi      = match[2] + '/' + match[3];
   } else if ((match = /^\/action\/doSearch$/i.exec(path)) !== null) {
     // https://www.jgme.org:443/action/doSearch?AllField=brain
     // https://www.jgme.org:443/action/doSearch?displaySummary=true&Contrib=&Title=&Keyword=toddler&AllField=brain&Abstract=&PubIdSpan=&AfterMonth=&AfterYear=&BeforeMonth=&BeforeYear=&search=Search
@@ -48,8 +51,13 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://www.jgme.org:443/na101/home/literatum/publisher/pinnacle/journals/content/jgme/2019/19498357-11.1/jgme-d-18-01093.1/20190211/images/large/i1949-8357-11-1-1-t01.jpeg
     result.rtype    = 'SUPPLEMENT';
     result.mime     = 'IMAGE';
-    result.title_id = match[3]
-    result.unitid   = match[6]
+    result.title_id = match[3];
+    result.unitid   = match[6];
+  } else if ((match = /^\/page\/([a-zA-Z0-9-]+)$/i.exec(path)) !== null) {
+    // https://www.jgme.org:443/page/medical-education-papers-worth-reading
+    result.rtype    = 'REFERENCE'
+    result.mime     = 'HTML';
+    result.unitid   = match[1]
   }
 
   return result;
