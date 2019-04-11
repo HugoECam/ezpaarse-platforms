@@ -137,7 +137,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.rtype = 'TOC';
     result.mime = 'HTML';
 
-  } else if ((match = /^\/journals\/[a-zA-Z-]+\/volume\-[0-9]+\/issue\-[0-9]+\/(.*)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/journals\/[a-zA-Z-]+\/volume\-[0-9]+\/issue\-[0-9]+\/.*\/([a-zA-Z-]+)\/(([0-9.]+\/(.*))).full$/i.exec(path)) !== null) {
     // https://bioone.org:443/journals/Systematic-Botany/volume-44/issue-1/036364419X697840/Herbarium-Practices-and-Ethics-III/10.1600/036364419X697840.full
     // https://bioone.org:443/journals/the-journal-of-eukaryotic-microbiology/volume-50/issue-1/j.1550-7408.2003.tb00099.x/Novel-Cytoskeletal-Proteins-in-Protists--Introductory-Remarksa-classinternal-link/10.1111/j.1550-7408.2003.tb00099.x.full
     result.rtype = 'ARTICLE';
