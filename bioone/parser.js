@@ -9,7 +9,7 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
   let param  = parsedUrl.query || {};
 
   // use console.error for debuging
-     console.error(parsedUrl);
+  // console.error(parsedUrl);
 
   let match;
 
@@ -109,18 +109,33 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
     result.rtype = 'SEARCH';
     result.mime =  'MISC';
 
+  } else if ((match = /^\/browse/i.exec(path)) !== null) {
+    // https://bioone.org:443/browse/title/W
+    // https://bioone.org:443/browse/subject/Environmental-Sciences
+    result.rtype = 'SEARCH';
+    result.mime =  'MISC';
+
   } else if ((match = /^\/journalArticle\/Download$/i.exec(path)) !== null) {
     // https://bioone.org:443/journalArticle/Download?fullDOI=10.1600%2F036364419X697840
     result.rtype    = 'ARTICLE';
     result.mime     = 'PDF';
-    result.doi      = param.fullDOI
-    result.unitid   = param.fullDOI
+    result.doi      = param.fullDOI;
+    result.unitid   = param.fullDOI;
 
   } else if ((match = /^\/journals\/[a-zA-Z-]+\/volume\-[0-9]+\/issue\-[0-9]+$/i.exec(path)) !== null) {
+    // https://bioone.org:443/journals/acta-chiropterologica/volume-20/issue-2
     result.rtype = 'TOC';
     result.mime = 'HTML';
 
-// HELP! I don't know how to parse the IDs for this one.
+  } else if ((match = /^\/journals\/[a-zA-Z-]+\/issues$/i.exec(path)) !== null) {
+    // https://bioone.org:443/journals/waterbirds/issues
+    result.rtype = 'TOC';
+    result.mime = 'HTML';
+
+  } else if ((match = /^\/journals\/[a-zA-Z-]+\/issues\/[0-9]+$/i.exec(path)) !== null) {
+    // https://bioone.org:443/journals/waterbirds/issues/2018
+    result.rtype = 'TOC';
+    result.mime = 'HTML';
 
   } else if ((match = /^\/journals\/[a-zA-Z-]+\/volume\-[0-9]+\/issue\-[0-9]+\/(.*)$/i.exec(path)) !== null) {
     // https://bioone.org:443/journals/Systematic-Botany/volume-44/issue-1/036364419X697840/Herbarium-Practices-and-Ethics-III/10.1600/036364419X697840.full
