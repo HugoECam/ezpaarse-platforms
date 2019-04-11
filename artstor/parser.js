@@ -20,7 +20,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   var param  = parsedUrl.query || {};
 
   // use console.error for debuging
-  //console.error(path);
+  // console.error(parsedUrl);
 
   var match;
 
@@ -79,6 +79,34 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
+
+
+  } else if ((match = /^\/api\/categories\/(.*)$/.exec(path)) !== null)
+  {
+    //http://library.artstor.org:80/api/categories/1035284832
+    //http://library.artstor.org:80/api/categories/10374058875
+
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+
+
+  } else if ((match = /^\/api\/search\/(.*)$/.exec(path)) !== null)
+  {
+    //http://library.artstor.org:80/api/search/v1.0/search
+
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
+
+
+  } else if ((match = /^\/api\/v1\/metadata(.*)$/.exec(path)) !== null)
+  {
+    //http://library.artstor.org:80/api/v1/metadata?object_ids=ARCHIVISION_111011290713
+
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'HTML';
+    result.title_id = param.object_ids
   }
+
+
   return result;
 });
