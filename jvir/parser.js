@@ -58,7 +58,6 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     }
     result.mime = 'HTML'
     result.unitid = param.pii
-    result.rid = param.pii
   } else if ((match = /^\/content\/([a-z]+)/i.exec(path)) !== null) {
     // https://www.jvir.org:443/content/cme
     // https://www.jvir.org:443/content/sir_supplements
