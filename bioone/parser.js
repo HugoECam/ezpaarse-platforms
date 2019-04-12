@@ -150,4 +150,3 @@ module.exports = new Parser(function analyseEC(parsedUrl) {
 
   return result;
 });
-
