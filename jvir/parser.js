@@ -17,7 +17,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   let param = parsedUrl.query || {};
 
   // use console.error for debuging
-  //  console.error(parsedUrl);
+    console.error(parsedUrl);
 
   let match;
 
@@ -64,6 +64,18 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://www.jvir.org:443/content/sir_supplements
     result.rtype  = 'SEARCH';
     result.mime   = 'HTML';
+  } else if ((match = /^\/cms\/([0-9.]+)\/([a-zA-Z0-9.]+)\/([a-z]+)\/([a-zA-Z0-9-]+)\/([a-zA-Z0-9.]+)$/i.exec(path)) !== null) {
+    // https://www.jvir.org:443/cms/10.1016/j.jvir.2016.09.028/attachment/58dd870f-e7e3-40e9-afed-1897cd74fe9c/mmc2.mp4
+    // https://www.jvir.org:443/cms/10.1016/j.jvir.2016.09.028/attachment/8f4a8bdc-6d6a-4fb2-a962-2d5691cfd0c6/mmc1.mp4
+    result.rtype  = 'SUPPLEMENT';
+    result.mime   = 'VIDEO';
+    result.doi    = match[1] + '/' + match[2];
+    result.unitid = match[4] + '/' + match[5];
+  } else if ((match = /^\/pb\/assets\/raw\/Health%20Advance\/journals\/jvir\/([a-zA-Z0-9_.-]+)$/i.exec(path)) !== null) {
+    // https://www.jvir.org/pb/assets/raw/Health%20Advance/journals/jvir/JVIR_28_1_Funaki_Kim-1482330661327.mp3
+    result.rtype  = 'SUPPLEMENT';
+    result.mime   = 'AUDIO';
+    result.unitid = match[1];
   } else if ((match = /^\/([a-z]+)/i.exec(path)) !== null) {
     // https://www.jvir.org:443/inpress
     // https://www.jvir.org:443/issues
@@ -85,13 +97,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
       result.rtype = 'TOC';
       result.mime   = 'HTML';
     }
-  } else if ((match = /^\/cms\/([0-9.]+)\/([a-zA-Z0-9.]+)\/([a-z]+)\/([a-zA-Z0-9-]+)\/([a-zA-Z0-9.]+)$/i.exec(path)) !== null) {
-    // https://www.jvir.org:443/cms/10.1016/j.jvir.2016.09.028/attachment/58dd870f-e7e3-40e9-afed-1897cd74fe9c/mmc2.mp4
-    // https://www.jvir.org:443/cms/10.1016/j.jvir.2016.09.028/attachment/8f4a8bdc-6d6a-4fb2-a962-2d5691cfd0c6/mmc1.mp4
-    result.rtype  = 'SUPPLEMENT'
-    result.mime   = 'VIDEO'
-    result.doi    = match[1] + '/' + match[2]
-    result.unitid = match[4] + '/' + match[5]
+
   }
 
   return result;
