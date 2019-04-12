@@ -90,7 +90,34 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
         result.mime = 'PDF';
       }
     }
+  } else if ((match = /^\/heb$/i.exec(path)) !==null) {
+    // https://www.fulcrum.org:443/heb?utf8=%E2%9C%93&press=heb&q=potato
+    result.rtype    = 'SEARCH';
+    result.mime     = 'HTML';
+  } else if ((match = /^\/concern\/monographs\/([0-9a-zA-z]+)$/i.exec(path)) !==null) {
+    // https://www.fulcrum.org:443/concern/monographs/2b88qc87f?locale=en
+    result.rtype    = 'TOC';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+  } else if ((match = /^\/epubs\/([0-9a-zA-z]+)$/i.exec(path)) !==null) {
+    // https://www.fulcrum.org:443/epubs/jw827c37k
+    result.rtype    = 'BOOK';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+  } else if ((match = /^\/epubs\/([0-9a-zA-z]+)\/([0-9a-zA-z]+)\.sm\.epub$/i.exec(path)) !==null) {
+    // https://www.fulcrum.org:443/epubs/8w32r604s/8w32r604s.sm.epub
+    result.rtype    = 'BOOK CHAPTER';
+    result.mime     = 'HTML';
+    result.unitid   = match[1];
+  } else if ((match = /^\/epubs\_download\_interval\/([0-9a-zA-z]+)$/i.exec(path)) !==null) {
+    // https://www.fulcrum.org:443/epubs_download_interval/8w32r604s?cfi=%2F6%2F238%5Bxhtml00000119%5D%21%2F4%2F1%3A0&locale=en&title=As+You+Like+It+%28page+97%29
+    result.rtype    = 'BOOK CHAPTER';
+    result.mime     = 'PDF';
+    result.title_id = param.title;
   }
+
+
+
 
   return result;
 });

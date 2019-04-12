@@ -3,7 +3,9 @@
   "status": "beta",
   "domains": [
     "www.humanitiesebook.org",
-    "quod.lib.umich.edu"
+    "quod.lib.umich.edu",
+    "www.fulcrum.org",
+    "fulcrum.org"
   ],
   "recognize": {
     "rid": [
