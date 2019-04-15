@@ -70,7 +70,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime   = 'VIDEO';
     result.doi    = match[1] + '/' + match[2];
     result.unitid = match[4] + '/' + match[5];
-  } else if ((match = /^\/pb\/assets\/raw\/Health%20Advance\/journals\/jvir\/([a-zA-Z0-9_.-]+)$/i.exec(path)) !== null) {
+  } else if ((match = /^\/pb\/assets\/raw\/Health%20Advance\/journals\/jvir\/([a-zA-Z0-9_.-]+).mp3$/i.exec(path)) !== null) {
     // https://www.jvir.org/pb/assets/raw/Health%20Advance/journals/jvir/JVIR_28_1_Funaki_Kim-1482330661327.mp3
     result.rtype  = 'SUPPLEMENT';
     result.mime   = 'AUDIO';
