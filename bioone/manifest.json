@@ -9,7 +9,7 @@
   "docurl": "http://analogist.couperin.org/platforms/bioone/",
   "contact": "sylvie.franck at inist point fr",
 	"domains": [
-    "www.bioone.org"
+    "www.bioone.org",
     "bioone.org"
 	],
   "pkb": true,
