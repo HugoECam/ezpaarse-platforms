@@ -28,7 +28,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.title_id = match[4];
   } else if ((match = /^\/us\/book\/(.*)$/i.exec(path)) !== null) {
     // https://www.palgrave.com:443/us/book/9783319905808
-    result.rtype    = 'ARTICLE';
+    result.rtype    = 'TOC';
     result.mime     = 'HTML';
     result.print_identifier = match[1];
     result.unitid   = match[1];
