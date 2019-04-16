@@ -31,16 +31,19 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://www.jgme.org:443/doi/full/10.4300/JGME-D-18-01093.1
     // https://www.jgme.org:443/doi/pdf/10.4300/JGME-D-18-01093.1
     if (match[1] == 'abs') {
-      result.mime = 'ABSTRACT';
+      result.rtype = 'ABS';
+      result.mime = 'HTML';
     }
     if (match[1] == 'full') {
+      result.rtype = 'ARTICLE';
       result.mime = 'HTML';
     }
     if (match[1] == 'pdf') {
+      result.rtype = 'ARTICLE';
       result.mime = 'PDF';
     }
-    result.rtype    = 'ARTICLE';
     result.doi      = match[2] + '/' + match[3];
+    result.unitid   = match[2] + '/' + match[3];
   } else if ((match = /^\/action\/doSearch$/i.exec(path)) !== null) {
     // https://www.jgme.org:443/action/doSearch?AllField=brain
     // https://www.jgme.org:443/action/doSearch?displaySummary=true&Contrib=&Title=&Keyword=toddler&AllField=brain&Abstract=&PubIdSpan=&AfterMonth=&AfterYear=&BeforeMonth=&BeforeYear=&search=Search
@@ -49,14 +52,15 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   } else if ((match = /^\/na101\/home\/literatum\/publisher\/pinnacle\/journals\/content\/jgme\/([0-9]+)\/([0-9-.]+)\/([a-zA-Z0-9.-]+)\/([0-9]+)\/images\/([a-z]+)\/([a-zA-Z0-9.-]+)$/i.exec(path)) !== null) {
     // https://www.jgme.org:443/na101/home/literatum/publisher/pinnacle/journals/content/jgme/2019/19498357-11.1/jgme-d-18-01093.1/20190211/images/large/i1949-8357-11-1-1-f02.jpeg
     // https://www.jgme.org:443/na101/home/literatum/publisher/pinnacle/journals/content/jgme/2019/19498357-11.1/jgme-d-18-01093.1/20190211/images/large/i1949-8357-11-1-1-t01.jpeg
-    result.rtype    = 'SUPPLEMENT';
-    result.mime     = 'IMAGE';
+    result.rtype    = 'IMAGE';
+    result.mime     = 'JPEG';
     result.title_id = match[3];
     result.unitid   = match[6];
   } else if ((match = /^\/page\/([a-zA-Z0-9-]+)$/i.exec(path)) !== null) {
     // https://www.jgme.org:443/page/medical-education-papers-worth-reading
-    result.rtype    = 'REFERENCE'
+    result.rtype    = 'REF'
     result.mime     = 'HTML';
+    result.title_id = match[1]
     result.unitid   = match[1]
   }
 
