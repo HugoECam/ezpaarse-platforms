@@ -47,7 +47,8 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // http://book.duxiu.com:80/videoDetail.jsp?dxid=163803630969&d=9D8F4B491F23F40CC4FB78A9FD84C68D
     result.rtype    = 'REF';
     result.mime     = 'HTML';
-    result.unitid   = param.dxNumber || param.dxid || param.sw;
+    result.title_id   = param.dxNumber || param.dxid || param.sw;
+    result.unitid   = param.d
     }
     if (match[1] === 'readDetail.jsp') {
     // http://book.duxiu.com:80/readDetail.jsp?dxNumber=000005229290&d=D2D23AD5C1D5E69A0680AEC4A4E9AA2E&t=3
