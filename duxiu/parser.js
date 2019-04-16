@@ -53,23 +53,23 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // http://book.duxiu.com:80/readDetail.jsp?dxNumber=000005229290&d=D2D23AD5C1D5E69A0680AEC4A4E9AA2E&t=3
     result.rtype     = 'BOOK PART';
     result.mime      = 'HTML';
-    result.title_id  = param.dxNumber
-    result.unitid    = param.d
+    result.title_id  = param.dxNumber;
+    result.unitid    = param.d;
     }
     if (match[1] === 'godownpdf.jsp') {
     // http://qw.duxiu.com:80/godownpdf.jsp?kid=65676B686B686C6D3637353530333734&pagenum=99&epage=101&a=188F458266335F85D0B1C7D2B4EEB69D&bt=qw&dxNumber=000030080757&sch=brain&zjid=000030080757_37
     result.rtype     = 'BOOK PART';
     result.mime      = 'PDF';
-    result.title_id  = param.dxNumber
-    result.unitid    = param.a
+    result.title_id  = param.dxNumber;
+    result.unitid    = param.a;
     }
     if ((match[1] === 'godowndoc.jsp') || (match[1] === 'godownexam.jsp')) {
     // http://book.duxiu.com:80/godowndoc.jsp?dxid=400640416056&d=7746EE1637C2B4D6C67B2F6827B41DE5
     // http://book.duxiu.com:80/godownexam.jsp?dxid=400123901604&d=71E3EB46AF2C329B1463813848F39F5E
     result.rtype     = 'ARTICLE';
     result.mime      = 'PDF';
-    result.title_id  = param.dxid
-    result.unitid    = param.d
+    result.title_id  = param.dxid;
+    result.unitid    = param.d;
     }
   }
 
