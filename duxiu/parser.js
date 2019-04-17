@@ -27,8 +27,8 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // http://book.duxiu.com:80/searchEncy?Field=all&channel=searchEncy&sw=carrot&ecode=utf-8&edtype=&searchtype=&view=0
     // http://vrefer.duxiu.com:80/searchGovernment?Field=all&channel=searchGovernment&sw=bridge&ecode=utf-8&edtype=&searchtype=&view=0
     // http://book.duxiu.com:80/searchInfo?Field=all&channel=searchInfo&sw=blacksmith&ecode=utf-8&edtype=&searchtype=&view=0
-    result.rtype    = 'SEARCH';
-    result.mime     = 'HTML';
+      result.rtype    = 'SEARCH';
+      result.mime     = 'HTML';
     }
     if ((match[1] === 'bookDetail.jsp') || (match[1] === 'courseDetail.jsp') || (match[1] === 'CPDetail.jsp') || (match[1] === 'EncyDetail.jsp') || (match[1] === 'godownexam.jsp') || (match[1] === 'InfoDetail.jsp') || (match[1] === 'JourDetail.jsp') || (match[1] === 'NPDetail.jsp') || (match[1] === 'patentDetail.jsp') || (match[1] === 'publicinfoDetail') || (match[1] === 'searchDict') || (match[1] === 'StdDetail.jsp') || (match[1] === 'thesisDetail.jsp') || (match[1] === 'videoDetail.jsp')) {
     // http://book.duxiu.com:80/bookDetail.jsp?dxNumber=000016213781&d=BF1D22D4A90B8ADF9CF61B0CCCB1676C
@@ -45,31 +45,31 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // http://book.duxiu.com:80/StdDetail.jsp?dxid=320150885025&d=4E5400CB12C210379C0120228B11B8BD
     // http://jour.duxiu.com:80/thesisDetail.jsp?dxNumber=390102513141&d=C90969D30D1392AC1689F64A75418331
     // http://book.duxiu.com:80/videoDetail.jsp?dxid=163803630969&d=9D8F4B491F23F40CC4FB78A9FD84C68D
-    result.rtype    = 'REF';
-    result.mime     = 'HTML';
-    result.title_id = param.dxNumber || param.dxid || param.sw;
-    result.unitid   = param.d;
+      result.rtype    = 'REF';
+      result.mime     = 'HTML';
+      result.title_id = param.dxNumber || param.dxid || param.sw;
+      result.unitid   = param.d;
     }
     if (match[1] === 'readDetail.jsp') {
     // http://book.duxiu.com:80/readDetail.jsp?dxNumber=000005229290&d=D2D23AD5C1D5E69A0680AEC4A4E9AA2E&t=3
-    result.rtype     = 'BOOK PART';
-    result.mime      = 'HTML';
-    result.title_id  = param.dxNumber;
-    result.unitid    = param.d;
+      result.rtype     = 'BOOK PART';
+      result.mime      = 'HTML';
+      result.title_id  = param.dxNumber;
+      result.unitid    = param.d;
     }
     if (match[1] === 'godownpdf.jsp') {
     // http://qw.duxiu.com:80/godownpdf.jsp?kid=65676B686B686C6D3637353530333734&pagenum=99&epage=101&a=188F458266335F85D0B1C7D2B4EEB69D&bt=qw&dxNumber=000030080757&sch=brain&zjid=000030080757_37
-    result.rtype     = 'BOOK PART';
-    result.mime      = 'PDF';
-    result.title_id  = param.dxNumber;
-    result.unitid    = param.a;
+      result.rtype     = 'BOOK PART';
+      result.mime      = 'PDF';
+      result.title_id  = param.dxNumber;
+      result.unitid    = param.a;
     }
     if (match[1] === 'godowndoc.jsp') {
     // http://book.duxiu.com:80/godowndoc.jsp?dxid=400640416056&d=7746EE1637C2B4D6C67B2F6827B41DE5
-    result.rtype     = 'ARTICLE';
-    result.mime      = 'PDF';
-    result.title_id  = param.dxid;
-    result.unitid    = param.d;
+      result.rtype     = 'ARTICLE';
+      result.mime      = 'PDF';
+      result.title_id  = param.dxid;
+      result.unitid    = param.d;
     }
   }
 
