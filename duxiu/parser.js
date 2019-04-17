@@ -48,7 +48,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.rtype    = 'REF';
     result.mime     = 'HTML';
     result.title_id = param.dxNumber || param.dxid || param.sw;
-    result.unitid   = param.d
+    result.unitid   = param.d;
     }
     if (match[1] === 'readDetail.jsp') {
     // http://book.duxiu.com:80/readDetail.jsp?dxNumber=000005229290&d=D2D23AD5C1D5E69A0680AEC4A4E9AA2E&t=3
@@ -64,9 +64,8 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.title_id  = param.dxNumber;
     result.unitid    = param.a;
     }
-    if ((match[1] === 'godowndoc.jsp') || (match[1] === 'godownexam.jsp')) {
+    if (match[1] === 'godowndoc.jsp') {
     // http://book.duxiu.com:80/godowndoc.jsp?dxid=400640416056&d=7746EE1637C2B4D6C67B2F6827B41DE5
-    // http://book.duxiu.com:80/godownexam.jsp?dxid=400123901604&d=71E3EB46AF2C329B1463813848F39F5E
     result.rtype     = 'ARTICLE';
     result.mime      = 'PDF';
     result.title_id  = param.dxid;
