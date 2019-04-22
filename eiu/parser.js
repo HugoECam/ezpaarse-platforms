@@ -52,18 +52,18 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   } else if ((match = /^\/article.aspx$/i.exec(path)) !== null) {
     if (param.subtopic == 'Charts and tables') {
     // http://country.eiu.com:80/article.aspx?articleid=1357877519&Country=Ghana&topic=Economy&subtopic=Charts+and+tables&subsubtopic=Annual+data+and+forecast
-    result.rtype    = 'DATA';
-    result.mime     = 'HTML';
-    result.title_id = param.articleid;
-    result.unitid   = param.articleid;
+      result.rtype    = 'DATA';
+      result.mime     = 'HTML';
+      result.title_id = param.articleid;
+      result.unitid   = param.articleid;
     }
     if (param.subtopic !== 'Charts and tables') {
     // http://country.eiu.com:80/article.aspx?articleid=1987582182
     // http://country.eiu.com:80/article.aspx?articleid=107592994&Country=Germany&topic=Economy&subtopic=Forecast&subsubtopic=Policy+trends
-    result.rtype    = 'ARTICLE';
-    result.mime     = 'HTML';
-    result.title_id = param.articleid;
-    result.unitid   = param.articleid;
+      result.rtype    = 'ARTICLE';
+      result.mime     = 'HTML';
+      result.title_id = param.articleid;
+      result.unitid   = param.articleid;
     }
   } else if ((match = /^\/handlers\/filehandler.ashx$/i.exec(path)) !== null) {
     // http://industry.eiu.com:80/handlers/filehandler.ashx?issue_id=777081261&mode=pdf
