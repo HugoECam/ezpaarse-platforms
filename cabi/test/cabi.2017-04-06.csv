@@ -3,3 +3,13 @@ BOOK_SECTION;PDF;20163382836;20163382836;http://www.cabi.org/cabebooks/FullTextP
 BOOK_SECTION;PDF;20163299417;20163299417;http://www.cabi.org/cabebooks/FullTextPDF/2016/20163299417.pdf
 BOOK_SECTION;HTML;20163382850;20163382850;http://www.cabi.org/cabebooks/ebook/20163382850
 BOOK_SECTION;HTML;20163122725;20163122725;http://www.cabi.org/cabebooks/ebook/20163122725
+SEARCH;HTML;;;https://www.cabdirect.org:443/cabdirect/search/?q=rainbow&facet1f=Your%20Products&facet1o=OR&facet1v=FT&facets=1
+SEARCH;HTML;;;https://www.cabdirect.org:443/cabdirect/search/?q=au%3a%22Babaheydari%2c+S.+B.%22
+SEARCH;HTML;;;https://www.cabi.org:443/cabthesaurus/mtwdk.exe?searchstring=&k=default&w=rainbow&l=60&s=1&t=1&n=15&x=0&tt=0
+SEARCH;HTML;;;https://www.cabdirect.org:443/cabdirect/search/?q=cc%3aAA500
+ABSTRACT;HTML;20183359796;20183359796;https://www.cabdirect.org:443/cabdirect/abstract/20183359796?q=(rainbow)+AND+(+((sc%3a((+%22FT%22+)+))+))
+ABSTRACT;HTML;20143226753;20143226753;https://www.cabdirect.org:443/cabdirect/abstract/20143226753?q=(hobbit)+AND+(+((sc%3a((+%22CA%22+)+))+))
+BOOK_SECTION;PDF;20183359796;20183359796;https://www.cabdirect.org:443/cabdirect/FullTextPDF/2018/20183359796.pdf
+BOOK_SECTION;PDF;20143226753;20143226753;https://www.cabdirect.org:443/cabdirect/FullTextPDF/2014/20143226753.pdf
+BOOK_SECTION;PDF;20173071957;20173071957;https://www.cabdirect.org:443/cabdirect/FullTextPDF/2017/20173071957.pdf
+BOOK_SECTION;PDF;20193035305;20193035305;https://www.cabdirect.org:443/cabdirect/FullTextPDF/2019/20193035305.pdf
