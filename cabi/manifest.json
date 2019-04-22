@@ -3,7 +3,9 @@
   "status": "beta",
   "domains": [
     "cabi.org",
-    "www.cabi.org"	
+    "www.cabi.org",
+    "www.cabdirect.org",
+    "cabdirect.org"
   ],
   "recognize": {
     "rid": [
