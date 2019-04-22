@@ -66,4 +66,3 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
   return result;
 });
-
