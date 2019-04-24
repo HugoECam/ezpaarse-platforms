@@ -13,6 +13,10 @@ const Parser = require('../.lib/parser.js');
 module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   let result = {};
   let path   = parsedUrl.pathname;
+  // let param  = parsedUrl.query || {};
+
+  // use console.error for debugging
+  // console.error(parsedUrl); 
 
   let match;
 
@@ -55,6 +59,14 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.publication_date = match[3];
     result.vol              = parseInt(match[4]).toString();
     result.issue            = parseInt(match[5]).toString();
+  } else if (/^\/search$|search;jsessionid/i.test(path)) {
+    // https://www.ingentaconnect.com:443/search;jsessionid=r3lsfa7wb6y3.x-ic-live-01?form_name=quicksearch&ie=%E0%A5%B0&option1=tka&value1=cancer
+    result.rtype             = 'SEARCH';
+    result.mime              = 'HTML';
+  } else if (/^\/search\/article/i.test(path)) {
+    //https://www.ingentaconnect.com:443/search/article?option1=tka&value1=cancer&pageSize=10&index=1
+    result.rtype             = 'ABS';
+    result.mime              = 'HTML';
   }
 
   return result;
