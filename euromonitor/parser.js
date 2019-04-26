@@ -25,7 +25,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // http://www.portal.euromonitor.com:80/portal/policy/accepttermsandconditions?ControllerName=Default&ActionName=Index
     result.rtype    = 'CONNECTION';
     result.mime     = 'MISC';
-  } else if (/^\/searchui\/main.js$/i.test(path)) {
+  } else if (/^\/([A-z]+)\/main.js$/i.test(path)) {
     // http://www.portal.euromonitor.com:80/searchui/main.js?version=20180704_1
     result.rtype    = 'SEARCH';
     result.mime     = 'HTML';
