@@ -17,7 +17,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   // let param = parsedUrl.query || {};
 
   // use console.error for debuging
-  console.error(parsedUrl);
+  // console.error(parsedUrl);
 
   let match;
 
@@ -25,8 +25,8 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://emory.on.worldcat.org:443/search?databaseList=283&queryString=se:The%20Oxford%20Mark%20Twain
     result.rtype = 'SEARCH';
     result.mime  = 'HTML';
-  
-    } else if ((match = /^\/ajax\/public\/holdings\/([0-9]+)\/1$/i.exec(path)) !== null) {
+
+  } else if ((match = /^\/ajax\/public\/holdings\/([0-9]+)\/1$/i.exec(path)) !== null) {
     // https://emory.on.worldcat.org:443/ajax/public/holdings/1782154/1?address=&scope=
     result.rtype    = 'REF';
     result.mime     = 'HTML';
