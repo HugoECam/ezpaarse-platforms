@@ -1,0 +1,19 @@
+{
+  "longname": "GALILEO",
+  "name": "galileo",
+  "describe": "Recognizes the accesses to the platform GALILEO",
+  "contact": "acoope5@emory.edu",
+  "pkb": false,
+  "docurl": "http://ang.couperin.org/platforms/to_be_completed/",
+  "domains": [
+    "funeral.galileo.usg.edu",
+    "dlg.galileo.usg.edu",
+    "aafa.galileo.usg.edu",
+    "cla.galileo.usg.edu",
+    "statregister.galileo.usg.edu",
+    "dlgcsm.galileo.usg.edu",
+    "galileo.usg.edu"
+  ],
+  "version": "2019-04-25",
+  "status": "beta"
+}
