@@ -2,7 +2,9 @@
   "version": "2016-07-18",
   "status": "beta",
   "domains": [
-    "www.scopus.com"
+    "www.scopus.com",
+    "scopus.com",
+    "syndic8.scopus.com"
   ],
   "recognize": {
     "rid": [
