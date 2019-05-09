@@ -1,0 +1,10 @@
+out-rtype;out-mime;out-unitid;out-title_id;in-url
+REF;HTML;1782154;1782154;https://emory.on.worldcat.org:443/ajax/public/holdings/1782154/1?address=&scope=
+REF;HTML;9986818;9986818;https://emory.on.worldcat.org:443/ajax/public/holdings/9986818/1?address=&scope=
+REF;HTML;64624802;64624802;https://emory.on.worldcat.org:443/ajax/public/holdings/64624802/1?address=&scope=
+REF;HTML;34515238;34515238;https://emory.on.worldcat.org:443/ajax/public/holdings/34515238/1?address=&scope=
+SEARCH;HTML;;;https://emory.on.worldcat.org:443/search?queryString=kw%3A%28potato%29&databaseList=283&origPageViewName=pages%2Fadvanced-search-page&clusterResults=true&scope=
+SEARCH;HTML;;;https://emory.on.worldcat.org:443/search?queryString=au%3DBaker%2C%20Keith&databaseList=283
+SEARCH;HTML;;;https://emory.on.worldcat.org:443/search?sortKey=BEST_MATCH&databaseList=283&queryString=au%3DBaker%2C+Keith&changedFacet=author&clusterResults=on&scope=&format=all&database=all&author=Booth%2C+David&year=all&yearFrom=&yearTo=&language=all&topic=all
+SEARCH;HTML;;;https://emory.on.worldcat.org:443/search?queryString=ti%3A%28Tom+Sawyer+Abroad%29&databaseList=283&origPageViewName=pages%2Fadvanced-search-page&clusterResults=true&scope=
+SEARCH;HTML;;;https://emory.on.worldcat.org:443/search?databaseList=283&queryString=se:The%20Oxford%20Mark%20Twain
