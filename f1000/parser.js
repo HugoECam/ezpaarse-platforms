@@ -28,7 +28,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://blog.f1000.com:443/topics/open-data/
     result.rtype = 'SEARCH';
     result.mime  = 'HTML';
-    
+
   } else if (/^\/prime\/recommendations\/all$/i.test(path)) {
     // https://f1000.com:443/prime/recommendations/all?fieldsCriteria[0].fieldName=all&fieldsCriteria[0].operator=AND&fieldsCriteria[0].value=rainbow
     result.rtype = 'SEARCH';
@@ -52,7 +52,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://blog.f1000.com:443/2010/07/06/a-biologist-a-chemist-and-a-physicist-walk-into-a-bar/
     result.rtype = 'ARTICLE';
     result.mime  = 'HTML';
-    
+
   } else if (((match = /^\/prime\/([0-9]+)$/i.exec(path)) !== null) || ((match = /^\/articles\/([0-9-]{5}\/v[0-9]+)$/i.exec(path)) !== null) || ((match = /^\/documents\/([0-9-]{6})$/i.exec(path)) !== null) || ((match = /^\/slides\/([0-9-]{5})$/i.exec(path)) !== null) || ((match = /^\/prime\/interaction\/openarticle\/([0-9]+)$/i.exec(path)) !== null)) {
     // https://f1000research.com:443/articles/7-208/v1
     // https://f1000research.com:443/documents/7-1444
@@ -72,6 +72,6 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid = param.doi;
     result.doi = param.doi;
   }
-  
+
   return result;
 });
