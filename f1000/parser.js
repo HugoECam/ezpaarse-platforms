@@ -14,7 +14,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   let result = {};
   let path   = parsedUrl.pathname;
   // uncomment this line if you need parameters
-  // let param = parsedUrl.query || {};
+  let param = parsedUrl.query || {};
 
   // use console.error for debuging
   // console.error(parsedUrl);
@@ -28,31 +28,50 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://blog.f1000.com:443/topics/open-data/
     result.rtype = 'SEARCH';
     result.mime  = 'HTML';
-  }
+    
+  } else if (/^\/prime\/recommendations\/all$/i.test(path)) {
+    // https://f1000.com:443/prime/recommendations/all?fieldsCriteria[0].fieldName=all&fieldsCriteria[0].operator=AND&fieldsCriteria[0].value=rainbow
+    result.rtype = 'SEARCH';
+    result.mime  = 'HTML';
 
+  } else if (/^\/gateways|collections\/([A-z]+)$|collections\/([A-z]+)\?selectedDomain=([a-z]+)/i.test(path)) {
+    // https://f1000research.com:443/gateways/disease_outbreaks
+    // https://f1000research.com:443/gateways/disease_outbreaks?selectedDomain=documents
+    // https://f1000research.com:443/collections/BOSC
+    // https://f1000research.com:443/collections/BOSC?selectedDomain=slides
+    result.rtype = 'TOC';
+    result.mime  = 'HTML';
 
+  } else if (/^\/collections\/([A-z]+)\/about-this-collection|posters/i.test(path)) {
+    // https://f1000research.com:443/collections/BOSC/about-this-collection
+    // https://f1000research.com:443/posters/6-499
+    result.rtype = 'REF';
+    result.mime  = 'HTML';
 
-  if ((match = /^\/platform\/path\/to\/(document-([0-9]+)-test\.pdf)$/i.exec(path)) !== null) {
-    // http://parser.skeleton.js/platform/path/to/document-123456-test.pdf?sequence=1
-    result.rtype    = 'ARTICLE';
-    result.mime     = 'PDF';
-    result.title_id = match[1];
-
-    /**
-     * unitid is a crucial information needed to filter double-clicks phenomenon, like described by COUNTER
-     * it described the most fine-grained of what's being accessed by the user
-     * it can be a DOI, an internal identifier or a part of the accessed URL
-     * more at http://ezpaarse.readthedocs.io/en/master/essential/ec-attributes.html#unitid
-     */
-    result.unitid = match[2];
-
-  } else if ((match = /^\/platform\/path\/to\/(document-([0-9]+)-test\.html)$/i.exec(path)) !== null) {
-    // http://parser.skeleton.js/platform/path/to/document-123456-test.html?sequence=1
+  } else if ((match = /^\/([0-9]{4})\/([0-9]{2})\/([0-9]{2})\/([a-z-]+)\/$/i.exec(path)) !== null) {
+    // https://blog.f1000.com:443/2010/07/06/a-biologist-a-chemist-and-a-physicist-walk-into-a-bar/
+    result.rtype = 'ARTICLE';
+    result.mime  = 'HTML';
+    
+  } else if (((match = /^\/prime\/([0-9]+)$/i.exec(path)) !== null) || ((match = /^\/articles\/([0-9-]{5}\/v[0-9]+)$/i.exec(path)) !== null) || ((match = /^\/documents\/([0-9-]{6})$/i.exec(path)) !== null) || ((match = /^\/slides\/([0-9-]{5})$/i.exec(path)) !== null) || ((match = /^\/prime\/interaction\/openarticle\/([0-9]+)$/i.exec(path)) !== null)) {
+    // https://f1000research.com:443/articles/7-208/v1
+    // https://f1000research.com:443/documents/7-1444
+    // https://f1000research.com:443/slides/7-636
+    // https://f1000.com:443/prime/1028491
+    // https://f1000.com:443/prime/interaction/openarticle/735502654
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
     result.title_id = match[1];
-    result.unitid   = match[2];
-  }
+    result.unitid   = match[1];
 
+  } else if (/^\/stats-pmc\/downloads-views$/i.test(path)) {
+    // https://f1000research.com:443/stats-pmc/downloads-views?doi=10.12688%2Ff1000research.10851.1
+    result.rtype = 'ARTICLE';
+    result.mime = 'PDF';
+    result.title_id = param.doi;
+    result.unitid = param.doi;
+    result.doi = param.doi;
+  }
+  
   return result;
 });
