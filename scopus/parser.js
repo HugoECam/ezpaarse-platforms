@@ -95,6 +95,11 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.mime   = 'HTML';
     result.rtype  = 'REF';
     result.unitid = match[1];
+  } else if (/^\/affil\/profile.uri$/i.test(path)) {
+    // https://www.scopus.com:443/affil/profile.uri?id=60018475&origin=AuthorResultsList
+    result.mime   = 'HTML';
+    result.rtype  = 'REF';
+    result.unitid = param.id;
   } else if (/^\/source\/retrieveDocs.uri$/i.test(path)) {
     // https://www.scopus.com:443/source/retrieveDocs.uri?sourceId=21100773746&year=2017&docType=cc&pg=1
     result.mime   = 'HTML';
@@ -104,6 +109,11 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     // https://syndic8.scopus.com:443/action/manage?currentActivity=null
     result.mime   = 'MISC';
     result.rtype  = 'CONNECTION';
+  } else if ((match = /^\/posts\/([A-z0-9-]+)$/i.exec(path)) !== null) {
+    // https://blog.scopus.com:443/posts/check-out-citescore-tracker-to-see-how-a-title-s-citescore-is-building-each-month
+    result.mime   = 'ARTICLE';
+    result.rtype  = 'REF';
+    result.unitid = match[1];
   }
   return result;
 });

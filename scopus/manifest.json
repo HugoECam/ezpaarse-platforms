@@ -4,7 +4,8 @@
   "domains": [
     "www.scopus.com",
     "scopus.com",
-    "syndic8.scopus.com"
+    "syndic8.scopus.com",
+    "blog.scopus.com"
   ],
   "recognize": {
     "rid": [
