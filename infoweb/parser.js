@@ -41,8 +41,8 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   // https://infoweb.newsbank.com:443/apps/readex/doc?p=ARDX&sort=_rank_%3AD&fld-base-0=alltext&val-base-0=honeysuckle&val-database-0=&fld-database-0=database&docref=image/v2%3A11342729F00F3900%40EANX-11580B8C962C3948%402422147-11580B8EDCEC28D8%405-11580B91A5AF7218%40Wild%2BHoneysuckle&firsthit=yes
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
-    result.unitid   = param.docref;
-    result.title_id = param.docref;
+    result.unitid   = param.docref || param.p_docref;
+    result.title_id = param.docref || param.p_docref;
 
   } else if ((/^\/iw-search\/we\/Static$/i.exec(path)) !== null) {
   //https://infoweb.newsbank.com:443/iw-search/we/Static?p_product=Earth&f_location=earth&p_theme=current&p_action=doc&p_nbid=O67S53VOMTU1NjEwOTk5Ny44ODI2Mzg6MToxNToxNzAuMTQwLjE0Mi4yNTI&f_docnum=172F8EE719450268&f_topic=1&f_prod=BTI2&f_type=&d_refprod=SPECIALREPORTS
@@ -51,11 +51,13 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid   = param.f_docnum;
     result.title_id = param.f_docnum;
 
-  } else if (/^\/SiteLinks\/imageviewer\/([A-z]+)\/index.xml$/i.test(path)) {
+  } else if ((/^\/SiteLinks\/imageviewer\/([A-z]+)\/index.xml$/i.exec(path)) !== null) {
     // http://infoweb.newsbank.com:80/SiteLinks/imageviewer/toc/index.xml?ssl=true&url=v2%3A12895BC6AA32DB40%40FBISX-13540E2F54E71300%402432788-13540E7456186328%40148&query=potato&xslt=toc_osd
     // http://infoweb.newsbank.com:80/SiteLinks/imageviewer/download_pdf/index.xml?ssl=true&format=pdf&rem=webengine_fbis&url=v2%3A11C33B0D5F860D98%40FBISX-12271CC0B07B0E78%402444646-12271CD366174438%4061
-    result.rtype = 'ARTICLE';
-    result.mime  = 'PDF';
+    result.rtype    = 'ARTICLE';
+    result.mime     = 'PDF';
+    result.unitid   = param.url;
+    result.title_id = param.url;
   }
 
   return result;
