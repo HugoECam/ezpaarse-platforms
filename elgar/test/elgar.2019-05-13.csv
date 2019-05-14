@@ -4,8 +4,8 @@ out-title_id;out-unitid;out-rtype;out-mime;in-url
 ;;SEARCH;HTML;https://www.elgaronline.com:443/search?q1=computers&searchBtn=
 ;;SEARCH;HTML;https://www.elgaronline.com:443/search?q1=bananas&searchBtn=
 ;;SEARCH;HTML;https://www.elgaronline.com:443/search?type_0=series&f_0=series&q_0=Leuven%20Global%20Governance%20series
-9781785367427;9781785367427;ABS;HTML;https://www.elgaronline.com:443/abstract/Research_Reviews/9781785367427/9781785367427.xml?rskey=OfaBR4&result=1
-9781786438904;9781786438904;ABS;HTML;https://www.elgaronline.com:443/abstract/Research_Reviews/9781786438904/9781786438904.xml?rskey=2VKG4N&result=1
+9781785367427;9781785367427;ABS;XML;https://www.elgaronline.com:443/abstract/Research_Reviews/9781785367427/9781785367427.xml?rskey=OfaBR4&result=1
+9781786438904;9781786438904;ABS;XML;https://www.elgaronline.com:443/abstract/Research_Reviews/9781786438904/9781786438904.xml?rskey=2VKG4N&result=1
 9781849807777;c04_sec85;BOOK_PART;HTML;https://www.elgaronline.com:443/view/nlm-book/9781849807777/c04_sec85.xml?rskey=qoQRWS&result=1
 9781849807777;c04_sec21;BOOK_PART;HTML;https://www.elgaronline.com:443/view/nlm-book/9781849807777/c04_sec21.xml
 9781784711450;9781784711450.00017;BOOK_PART;XML;https://www.elgaronline.com:443/view/9781784711450.00017.xml?rskey=Ye4whX&result=5
