@@ -19,7 +19,7 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   // use console.error for debuging
   // console.error(parsedUrl);
 
-  let match;
+  // let match;
 
   if (/^\/apps\/news\/results$|issue-browse$|hot-topics|readex\/results$/i.test(path)) {
   // https://infoweb.newsbank.com:443/apps/news/results?p=WORLDNEWS&fld-base-0=alltext&sort=YMD_date%3AD&maxresults=20&val-base-0=rainbow&t=product%3AAWNB
@@ -28,25 +28,23 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
   // https://infoweb.newsbank.com:443/apps/readex/results?p=ARDX&fld-base-0=alltext&val-base-0=honeysuckle&sort=_rank_%3AD&val-database-0=&fld-database-0=database
     result.rtype = 'SEARCH';
     result.mime  = 'HTML';
-  
+
   } else if (/^\/iw-search\/we\/(Static\/|HistArchive)$/i.test(path)) {
   // https://infoweb.newsbank.com:443/iw-search/we/Static/?p_product=Earth&f_location=earth&p_theme=current&p_action=list&p_nbid=O67S53VOMTU1NjEwOTk5Ny44ODI2Mzg6MToxNToxNzAuMTQwLjE0Mi4yNTI
   // http://infoweb.newsbank.com:80/iw-search/we/HistArchive?p_action=search
     result.rtype = 'SEARCH';
     result.mime  = 'HTML';
 
-  } else if ((match = /^\/apps\/news\/document-view|iw-search\/we\/HistArchive\/|apps\/readex\/doc$/i.exec(path)) !== null) {
+  } else if ((/^\/apps\/news\/document-view|iw-search\/we\/HistArchive\/|apps\/readex\/doc$/i.exec(path)) !== null) {
   // https://infoweb.newsbank.com:443/apps/news/document-view?p=WORLDNEWS&t=product%3AAWNB/stp%3ABlog%21Blog&sort=YMD_date%3AD&fld-base-0=alltext&maxresults=20&val-base-0=rainbow&docref=news/172FFE5E4D54A8A0    
   // http://infoweb.newsbank.com:80/iw-search/we/HistArchive/?p_product=FBISX&p_theme=fbis&p_nbid=M5CA58XSMTU1NzQzMzAzNi4zOTMzMDE6MToxNToxNzAuMTQwLjE0Mi4yNTI&p_action=doc&s_lastnonissuequeryname=1&p_queryname=1&p_docref=v2:12895BC6AA32DB40@FBISX-13540E2F54E71300@2432788-13540E7456186328@148&p_docnum=1
+  // https://infoweb.newsbank.com:443/apps/readex/doc?p=ARDX&sort=_rank_%3AD&fld-base-0=alltext&val-base-0=honeysuckle&val-database-0=&fld-database-0=database&docref=image/v2%3A11342729F00F3900%40EANX-11580B8C962C3948%402422147-11580B8EDCEC28D8%405-11580B91A5AF7218%40Wild%2BHoneysuckle&firsthit=yes
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
     result.unitid   = param.docref;
     result.title_id = param.docref;
 
-    // https://infoweb.newsbank.com:443/apps/readex/doc?p=ARDX&sort=_rank_%3AD&fld-base-0=alltext&val-base-0=honeysuckle&val-database-0=&fld-database-0=database&docref=image/v2%3A11342729F00F3900%40EANX-11580B8C962C3948%402422147-11580B8EDCEC28D8%405-11580B91A5AF7218%40Wild%2BHoneysuckle&firsthit=yes
-    // https://infoweb.newsbank.com:443/apps/readex/doc?p=ARDX&sort=_rank_%3AD&fld-base-0=alltext&val-base-0=honeysuckle&val-database-0=&fld-database-0=database&docref=image%2Fv2%3A11342729F00F3900%40EANX-11580B8C962C3948%402422147-11580B8F2AF24EF8%406&origin=image%2Fv2%3A11342729F00F3900%40EANX-11580B8C962C3948%402422147-11580B8EDCEC28D8%405-11580B91A5AF7218%40Wild%2BHoneysuckle
-
-  } else if ((match = /^\/iw-search\/we\/Static$/i.exec(path)) !== null) {
+  } else if ((/^\/iw-search\/we\/Static$/i.exec(path)) !== null) {
   //https://infoweb.newsbank.com:443/iw-search/we/Static?p_product=Earth&f_location=earth&p_theme=current&p_action=doc&p_nbid=O67S53VOMTU1NjEwOTk5Ny44ODI2Mzg6MToxNToxNzAuMTQwLjE0Mi4yNTI&f_docnum=172F8EE719450268&f_topic=1&f_prod=BTI2&f_type=&d_refprod=SPECIALREPORTS
     result.rtype    = 'ARTICLE';
     result.mime     = 'HTML';
