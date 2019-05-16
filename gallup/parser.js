@@ -56,6 +56,6 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid = param.questionId + '/' + param.geoId + '/' + param.regionId;
     result.title_id = param.questionId + '/' + param.geoId + '/' + param.regionId;
   }
-  
+
   return result;
 });
