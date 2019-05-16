@@ -1,0 +1,14 @@
+{
+  "longname": "World Bank",
+  "name": "worldbank",
+  "describe": "Recognizes the accesses to the platform World Bank",
+  "contact": "acoope5@emory.edu",
+  "pkb": false,
+  "docurl": "http://analyses.ezpaarse.org/platforms/552cfa3f35ed938324892385",
+  "domains": [
+    "elibrary.worldbank.org",
+    "worldbank.org"
+  ],
+  "version": "2019-05-16",
+  "status": "beta"
+}
