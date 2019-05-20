@@ -1,0 +1,13 @@
+{
+  "longname": "American Physiological Society",
+  "name": "physiology",
+  "describe": "Recognizes the accesses to the platform American Physiological Society",
+  "contact": "Frederic Truong inist, Sylvie Franck, Sonia Launay, Yannick Schurter, acoope5@emory.edu",
+  "pkb": false,
+  "docurl": "http://analogist.couperin.org/platforms/559694a112120d440d1ec726 ",
+  "domains": [
+    "physiology.org"
+  ],
+  "version": "2019-05-16",
+  "status": "beta"
+}
