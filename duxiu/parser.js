@@ -52,14 +52,14 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     }
     if (match[1] === 'readDetail.jsp') {
     // http://book.duxiu.com:80/readDetail.jsp?dxNumber=000005229290&d=D2D23AD5C1D5E69A0680AEC4A4E9AA2E&t=3
-      result.rtype     = 'BOOK PART';
+      result.rtype     = 'BOOK_SECTION';
       result.mime      = 'HTML';
       result.title_id  = param.dxNumber;
       result.unitid    = param.d;
     }
     if (match[1] === 'godownpdf.jsp') {
     // http://qw.duxiu.com:80/godownpdf.jsp?kid=65676B686B686C6D3637353530333734&pagenum=99&epage=101&a=188F458266335F85D0B1C7D2B4EEB69D&bt=qw&dxNumber=000030080757&sch=brain&zjid=000030080757_37
-      result.rtype     = 'BOOK PART';
+      result.rtype     = 'BOOK_SECTION';
       result.mime      = 'PDF';
       result.title_id  = param.dxNumber;
       result.unitid    = param.a;
