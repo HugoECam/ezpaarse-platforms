@@ -21,26 +21,65 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
 
   let match;
 
-  if ((match = /^\/platform\/path\/to\/(document-([0-9]+)-test\.pdf)$/i.exec(path)) !== null) {
-    // http://parser.skeleton.js/platform/path/to/document-123456-test.pdf?sequence=1
-    result.rtype    = 'ARTICLE';
-    result.mime     = 'PDF';
-    result.title_id = match[1];
+  if (/^\/action\/doSearch|author|keyword/i.test(path)) {
+    // https://www.physiology.org:443/action/doSearch?AllField=rainbow&startPage=&SeriesKey=ajpregu
+    // https://www.physiology.org:443/author/Burton%2C+R+R
+    // https://www.physiology.org:443/keyword/Emphysema
+    result.rtype = 'SEARCH';
+    result.mime  = 'HTML';
 
-    /**
-     * unitid is a crucial information needed to filter double-clicks phenomenon, like described by COUNTER
-     * it described the most fine-grained of what's being accessed by the user
-     * it can be a DOI, an internal identifier or a part of the accessed URL
-     * more at http://ezpaarse.readthedocs.io/en/master/essential/ec-attributes.html#unitid
-     */
+  } else if ((match = /^\/(journal|topic)\/([a-z0-9-\/]+)$/i.exec(path)) !== null) {
+    // https://www.physiology.org:443/journal/ajpheart
+    // https://www.physiology.org:443/topic/advances-collections/2018-institute-for-teaching-and-learning?seriesKey=&tagCode=
+    result.rtype = 'TOC';
+    result.mime  = 'HTML';
+    result.title_id = match[2]
+    result.unitid = match[2]
+
+  } else if ((match = /^\/toc\/([a-z-]+)\/([a-z0-9-\/]+)/i.exec(path)) !== null) {
+    // https://www.physiology.org:443/toc/ajprenal/316/5
+    // https://www.physiology.org:443/toc/physiologyonline/34/3
+    // https://www.physiology.org:443/toc/ajprenal/current
+    result.rtype = 'TOC';
+    result.mime = 'HTML';
+    result.title_id = match[1];
     result.unitid = match[2];
 
-  } else if ((match = /^\/platform\/path\/to\/(document-([0-9]+)-test\.html)$/i.exec(path)) !== null) {
-    // http://parser.skeleton.js/platform/path/to/document-123456-test.html?sequence=1
-    result.rtype    = 'ARTICLE';
-    result.mime     = 'HTML';
+  } else if ((match = /^\/([a-z0-9-]+)\/about$/i.exec(path)) !== null) {
+    // https://www.physiology.org:443/ajprenal/about
+    result.rtype = 'REF';
+    result.mime = 'HTML';
     result.title_id = match[1];
-    result.unitid   = match[2];
+    result.unitid = match[1];
+
+  } else if ((match = /^\/doi\/abs\/([0-9a-z-\/.]+)$/i.exec(path)) !== null) {
+    // https://www.physiology.org:443/doi/abs/10.1152/jappl.1967.22.4.782
+    result.rtype = 'ABS';
+    result.mime = 'HTML';
+    result.title_id = match[1];
+    result.unitid = match[1];
+    result.doi = match[1];
+
+  } else if ((match = /^\/doi\/full\/([0-9a-z-\/.]+)$/i.exec(path)) !== null) {
+    // https://www.physiology.org:443/doi/full/10.1152/ajpheart.00004.2019
+    // https://www.physiology.org:443/doi/full/10.1152/physiol.00007.2019
+    // https://www.physiology.org:443/doi/full/10.1152/advan.00045.2019
+    result.rtype = 'ARTICLE';
+    result.mime = 'HTML';
+    result.title_id = match[1];
+    result.unitid = match[1];
+    result.doi = match[1];
+
+  } else if ((match = /^\/doi\/pdf\/([0-9a-z-\/.]+)$/i.exec(path)) !== null) {
+    // https://www.physiology.org:443/doi/pdf/10.1152/ajpheart.00004.2019
+    // https://www.physiology.org:443/doi/pdf/10.1152/physiol.00007.2019
+    // https://www.physiology.org:443/doi/pdf/10.1152/jappl.1967.22.4.782
+    result.rtype = 'ARTICLE';
+    result.mime = 'PDF';
+    result.title_id = match[1];
+    result.unitid = match[1];
+    result.doi = match[1];
+
   }
 
   return result;
