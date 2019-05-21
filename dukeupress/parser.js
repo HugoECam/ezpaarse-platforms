@@ -72,13 +72,13 @@ module.exports = new Parser(function analyseEC(parsedUrl, ec) {
     result.unitid   = match[3];
   } else if ((match = /^\/books\/book\/([a-zA-Z0-9_/-]+)\/([a-zA-Z0-9_/-]+)$/i.exec(path)) !== null) {
     // https://read.dukeupress.edu:443/books/book/1703/chapter/181030/Overdetermined-OedipusMommy-Daddy-and-Me-as
-    result.rtype    = 'BOOK_PART';
+    result.rtype    = 'BOOK_SECTION';
     result.mime     = 'HTML';
     result.title_id = match[2];
     result.unitid   = match[3];
   } else if ((match = /^\/([a-z-]+)\/chapter-pdf\/([0-9-]+)\/([a-zA-Z0-9_-]+).pdf$/i.exec(path)) !== null) {
     // https://read.dukeupress.edu:443/books/chapter-pdf/494704/9780822383932-011.pdf
-    result.rtype    = 'BOOK_PART';
+    result.rtype    = 'BOOK_SECTION';
     result.mime     = 'PDF';
     result.title_id = match[2];
     result.unitid   = match[3];
